@@ -1,0 +1,48 @@
+<!-- * * * * * Fragments für die Startseite * * * * * -->
+
+<!-- Tabelle zum Anmelden/Registieren (Haupttabelle)-->
+<div th:fragment="startseitentabelle" id="Startseitentabelle" class="container">
+<!--Note: bei Zugriff via th wird auf die ID referenziert-->
+    <table class="table table-bordered table-light">
+        <thead>
+        <tr>
+            <th><h2 class="display-3 text-center">Anmelden</h2></th>
+            <th><h2 class="display-3 text-center">Registrieren</h2></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><div th:replace="fragments/mainfrag.html :: #Anmeldeformular">Hier könnte ihre Anmeldung stehen</div></td>
+            <td><div th:replace="fragments/mainfrag.html :: #Registrierungsformular">Hier könnte ihre Registrierung stehen stehen</div></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Anmeldeseite der Tabelle-->
+<div th:fragment="anmeldeformular" id="Anmeldeformular">
+    <form method="get" th:action="@{/anmeldung/verifyuser}">
+        <div class="form-groop" id="">
+            <label for="usernameinput">Anmeldename</label>
+            <input class="form-control" type="text" name="name" id="usernameinput" placeholder="Willi123">
+            <label for="paswortinput">Passwort</label>
+            <input class="form-control" type="password" name="password" id="paswortinput" placeholder="Passwort">
+        </div>
+    </form>
+</div>
+
+
+<!-- Registrierungsseite der Tabelle-->
+<div th:fragment="registrierungsformular" id="Registrierungsformular">
+    <form method="get" th:action="@{/registrierung/newuser}">
+        <div class="form-groop" id="Registrierung">
+            <label for="usernameRegistrierung">Anmeldename</label>
+            <input class="form-control" type="text" name="name" id="usernameRegistrierung" placeholder="Neuer Nutzername">
+            <label for="paswortRegistrierung">Passwort</label>
+            <input class="form-control" type="password" name="password" id="paswortRegistrierung" placeholder="Passwort">
+            <label for="paswortWiederholungRegistrierung">Passwort wiederholen</label>
+            <input class="form-control" type="password" name="password" id="paswortWiederholungRegistrierung" placeholder="Passwort nochmal">
+            <small class="form-text text-muted" id="hinweißPasswortwiederholung">Das Passwort sollte wieder das selbe sein</small>
+        </div>
+    </form>
+</div>

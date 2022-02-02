@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SocialBoard</title>
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/css/bootstrap.min.css}"
+          href="/static/css/bootstrap.min.css">
+</head>
+<body>
+
+<div id="heading" class="container">
+    <h1 class="display-1 text-center">Welcome to SocialBoard</h1>
+</div>
+
+<div th:replace="fragments/mainfrag.html :: #Startseitentabelle">
+</div>
+
+</body>
+</html>
