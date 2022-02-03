@@ -1,4 +1,4 @@
-package stellarbytestudios.socialboard;
+package stellarbytestudios.socialboard.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
