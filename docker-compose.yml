@@ -3,10 +3,10 @@ services:
   database:
     image: mariadb:10.5
     ports:
-      - "3311:3306"
+      - "3312:3306"
     volumes:
       - ./data:/var/lib/mysql
     environment:
       - "MYSQL_ROOT_USER=${DB_USER}"
       - "MYSQL_ROOT_PASSWORD=${DB_PASSWORD}"
-      - "MYSQL_DATABASE=DataBase"
+      - "MYSQL_DATABASE=DataBaseSocialBoard"
