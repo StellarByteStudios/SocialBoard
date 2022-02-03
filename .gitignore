@@ -1,3 +1,8 @@
+### eigenes aussortieren ###
+# datenbankdaten
+data/
+
+
 HELP.md
 .gradle
 build/
