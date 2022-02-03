@@ -10,9 +10,12 @@ public class PathLibary {
 
     //Anmeldungskram
     public static final String ANMELDUNG = "/anmeldung";
+    public static final String VERIFYUSER = "/verifyuser";
 
     //Userseite
-    public static final String LOADUSERPAGE = "/personalfeed";
+    public static final String USERCONTROLLER = "/user";
+    public static final String USERFEED = "/personalfeed";
+
 
 
 }

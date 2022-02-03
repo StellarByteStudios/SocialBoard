@@ -38,7 +38,7 @@
 
 <!-- Registrierungsseite der Tabelle-->
 <div th:fragment="registrierungsformular" id="Registrierungsformular">
-    <form method="get" th:action="@{/registrierung/newuser}">
+    <form method="post" th:action="@{/registrierung/newuser}">
         <div class="form-groop" id="Registrierung">
             <label for="usernameRegistrierung">Anmeldename</label>
             <input class="form-control" type="text" name="name" id="usernameRegistrierung" placeholder="Neuer Nutzername">
