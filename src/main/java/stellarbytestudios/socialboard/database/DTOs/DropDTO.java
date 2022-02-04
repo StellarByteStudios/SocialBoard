@@ -21,7 +21,16 @@ public class DropDTO {
         this.dateOfWriting = dateOfWriting;
     }
 
-    // Zusatzmethoden
+    // * * Zusatzmethoden * * //
+
+    // Getter
+    public String getContent() {
+        return content;
+    }
+    public LocalDateTime getDateOfWriting() {
+        return dateOfWriting;
+    }
+
     @Override
     public String toString() {
         return "DropDTO{" +

@@ -33,8 +33,37 @@ public class UserDTO {
         this.dropDTOS = dropDTOS;
     }
 
-    // Zusatzmethoden
-    public void addDrop(DropDTO dropDTO){ this.dropDTOS.add(dropDTO); }
+    // * * Zusatzmethoden * * //
+    // Drop aus dem Set bekommen durch seinen Inhalt
+    private DropDTO getDropWithString(String content){
+        for(DropDTO drop : this.dropDTOS) {
+            if (drop.getContent().equals(content)){
+                return drop;
+            }
+        }
+        return null;
+    }
+
+    // adding
+    public void addDrop(DropDTO drop){
+        this.dropDTOS.add(drop);
+    }
+
+    // removing
+    public void removeDropByContent(String removal){
+        removeDrop(getDropWithString(removal));
+    }
+    private void removeDrop(DropDTO drop){
+        if (drop == null) { return; }
+        this.dropDTOS.remove(drop);
+    }
+    // changing
+    public void changeDropcontent(String removal, String newContent){
+        DropDTO toChange = getDropWithString(removal);
+        if (toChange == null) { return; }
+        this.dropDTOS.remove(toChange);
+        this.dropDTOS.add(new DropDTO(newContent, toChange.getDateOfWriting()));
+    }
 
     // Factory für Erstellung ohne Drops (Alles außer der "Alles Konstruktor" verwirrt Spring Data JDBC)
     // Factory muss immer Statisch sein
