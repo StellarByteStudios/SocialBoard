@@ -34,7 +34,7 @@ public class UserDTO {
 
 
     // Zusatzmethoden
-    void addDrop(DropDTO dropDTO){ this.dropDTOS.add(dropDTO); }
+    public void addDrop(DropDTO dropDTO){ this.dropDTOS.add(dropDTO); }
 
     @Override
     public String toString() {
