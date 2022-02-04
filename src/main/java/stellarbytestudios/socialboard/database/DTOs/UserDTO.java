@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Table("Users")
@@ -32,9 +33,14 @@ public class UserDTO {
         this.dropDTOS = dropDTOS;
     }
 
-
     // Zusatzmethoden
     public void addDrop(DropDTO dropDTO){ this.dropDTOS.add(dropDTO); }
+
+    // Factory für Erstellung ohne Drops (Alles außer der "Alles Konstruktor" verwirrt Spring Data JDBC)
+    // Factory muss immer Statisch sein
+    public static UserDTO create(Long id, String username, String password) {
+        return new UserDTO(id, username, password, new HashSet<>());
+    }
 
     @Override
     public String toString() {
