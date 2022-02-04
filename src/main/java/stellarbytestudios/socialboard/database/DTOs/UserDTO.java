@@ -38,11 +38,21 @@ public class UserDTO {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", drops=" + dropDTOS +
-                '}';
+        String info = "\nThe User with the Name: " + username +
+                        " and the ID: " + id +
+                        " have this password: " + password +
+                        " and the following Drops: ";
+        int counter = 0;
+        for (DropDTO drop : dropDTOS) {
+            info += "\n\tDrop " + counter + ": " + drop;
+            counter++;
+        }
+        return info;
+//        return "User{" +
+//                "id=" + id +
+//                ", username='" + username + '\'' +
+//                ", password='" + password + '\'' +
+//                ", drops=" + dropDTOS +
+//                '}';
     }
 }
