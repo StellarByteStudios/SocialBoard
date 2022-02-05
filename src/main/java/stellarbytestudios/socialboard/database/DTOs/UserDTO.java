@@ -83,11 +83,5 @@ public class UserDTO {
             counter++;
         }
         return info;
-//        return "User{" +
-//                "id=" + id +
-//                ", username='" + username + '\'' +
-//                ", password='" + password + '\'' +
-//                ", drops=" + dropDTOS +
-//                '}';
     }
 }
