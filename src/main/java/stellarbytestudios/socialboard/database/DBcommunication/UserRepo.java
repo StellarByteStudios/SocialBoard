@@ -1,4 +1,4 @@
-package stellarbytestudios.socialboard.database.Repositories;
+package stellarbytestudios.socialboard.database.DBcommunication;
 
 import org.springframework.data.repository.CrudRepository;
 import stellarbytestudios.socialboard.database.DTOs.UserDTO;

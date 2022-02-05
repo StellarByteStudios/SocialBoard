@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import stellarbytestudios.socialboard.database.DTOs.DropDTO;
 import stellarbytestudios.socialboard.database.DTOs.UserDTO;
-import stellarbytestudios.socialboard.database.Repositories.UserRepo;
+import stellarbytestudios.socialboard.database.DBcommunication.UserRepo;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
