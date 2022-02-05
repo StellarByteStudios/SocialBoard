@@ -11,6 +11,7 @@ public class StartPageController {
 
 @GetMapping(STARTPAGE)
     public String getStartPage(Model m){
+        m.addAttribute("verified", true);
         return "startpage";
     }
 }

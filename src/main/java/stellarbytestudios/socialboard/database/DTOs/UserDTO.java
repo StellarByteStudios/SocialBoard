@@ -3,8 +3,10 @@ package stellarbytestudios.socialboard.database.DTOs;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+import stellarbytestudios.socialboard.core.UserRec;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Table("Users")
@@ -83,11 +85,10 @@ public class UserDTO {
             counter++;
         }
         return info;
-//        return "User{" +
-//                "id=" + id +
-//                ", username='" + username + '\'' +
-//                ", password='" + password + '\'' +
-//                ", drops=" + dropDTOS +
-//                '}';
+    }
+
+    // Interaktion mit Records des Objekts
+    public boolean equalsWithRecord(UserRec userRec){
+        return (this.username.equals(userRec.username()) && this.password.equals(userRec.password()));
     }
 }
