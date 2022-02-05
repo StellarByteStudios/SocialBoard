@@ -16,6 +16,11 @@ public class UserServiceRepositoryImpl implements UserServiceRepository {
     // Verbindung zur Datenbank
     UserCrudRepo userCrudRepo;
 
+    // Initialisierung
+    public UserServiceRepositoryImpl(UserCrudRepo userCrudRepo) {
+        this.userCrudRepo = userCrudRepo;
+    }
+
     // Überprüft ob der übergebene User so in der Datenbank steht (Name und Passwort korrekt)
     @Override
     public boolean validateUserLogin(UserRec user) {
