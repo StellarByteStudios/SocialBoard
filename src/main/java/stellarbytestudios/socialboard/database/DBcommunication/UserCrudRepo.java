@@ -14,4 +14,17 @@ import java.util.List;
 // Find by... aber man kann in der Not auch händisch Querys schreiben
 public interface UserCrudRepo extends CrudRepository<UserDTO, Long> {
 
+    public UserDTO findUserDTOByUsername(String name);
+
+    // Beispiel aus einem anderen Projekt zum Thema eigene Querys schreiben
+
+//    @Query("""
+//        SELECT projekt
+//        FROM projektor.person person
+//        JOIN projektor.projekt_person referenz on person.id = referenz.person
+//        JOIN projektor.projekt projekt on referenz.projekt_dto = projekt.id
+//        WHERE person.name = :name
+//    """)
+//    List<ProjektDTO> findAllProjectsOfPerson(@Param("name")String name);
+
 }
