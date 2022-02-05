@@ -3,6 +3,8 @@ package stellarbytestudios.socialboard;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
+import stellarbytestudios.socialboard.core.UserRec;
 import stellarbytestudios.socialboard.database.DBcommunication.UserRepo;
 import stellarbytestudios.socialboard.database.DTOs.DropDTO;
 import stellarbytestudios.socialboard.database.DTOs.UserDTO;
@@ -20,11 +22,6 @@ public class TestAgainstRealDatabase {
 
     @Autowired
     private UserServiceRepository serviceRepository;
-
-    UserDTO user1;
-    UserDTO user2;
-    Set<DropDTO> drops;
-
 
 
     @Test
@@ -82,6 +79,20 @@ public class TestAgainstRealDatabase {
         System.out.println("Jetzt Ändert der Zweite seinen Eintrag");
         System.out.println(userRepo.findAll());
         System.out.println();
+
+        // Versuche einen Nutzer durch seinen Namen zu finden
+        System.out.println("Versuche einen Nutzer durch seinen Namen zu finden");
+        System.out.println(userRepo.findUserDTOByUsername("Schüler1"));
+        System.out.println();
+
+//        // Passworttest
+//        System.out.println("Validiere Das Passwort des Nutzers erst Falsch dann Richtig");
+//        System.out.println("Falsches Password");
+//        System.out.println(serviceRepository.validateUserLogin(new UserRec(1, "Schüler1", "password")));
+//        System.out.println();
+//        System.out.println("Jetzt richtiges Password");
+//        System.out.println(serviceRepository.validateUserLogin(new UserRec(1, "Schüler1", "123")));
+//        System.out.println();
 
 
         // Alle Testdaten löschen
