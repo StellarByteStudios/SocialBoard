@@ -27,7 +27,7 @@ public class AnmeldungController {
     public String verify(Model m, RedirectAttributes redirectAttributes, String name, String password){
 
         System.out.println(name + " und " + password);
-        Boolean verified;
+        boolean verified;
 
         // Waren die Eingaben überhaupt korrekt?
         if (name == null) {
