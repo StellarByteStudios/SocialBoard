@@ -24,7 +24,7 @@ public class AnmeldungController {
 
     //Anmeldung wird momentan noch nicht verifiziert
     @GetMapping(VERIFYUSER)
-    public String verify(Model m, RedirectAttributes redirectAttributes, String name, String password, boolean valid){
+    public String verify(Model m, RedirectAttributes redirectAttributes, String name, String password){
 
         System.out.println(name + " und " + password);
         Boolean verified;
