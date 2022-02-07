@@ -50,7 +50,11 @@
             <input class="form-control" type="password" name="password" id="paswortRegistrierung" placeholder="Passwort">
             <label for="paswortWiederholungRegistrierung">Passwort wiederholen</label>
             <input class="form-control" type="password" name="passwordwiederholung" id="paswortWiederholungRegistrierung" placeholder="Passwort nochmal">
-            <small class="form-text text-muted" id="hinweißPasswortwiederholung">Das Passwort sollte wieder das selbe sein</small>
+            <!-- Wie ist der Status der Registrierung? -->
+            <small th:if="${firstVisit}" class="form-text text-muted" id="hinweißPasswortwiederholung">Das Passwort sollte wieder das selbe sein</small>
+            <small th:if="${noInputRegi}" class="form-text text-danger" id="noInputRegi">Du musst schon alle Felder ausfüllen</small>
+            <small th:if="${falsePassword}" class="form-text text-danger" id="passwortNichtIdentisch">Die Passwörter stimmen nicht überein</small>
+            <small th:if="${nameTaken}" class="form-text text-danger" id="nameTaken">Dieser Nutzername wird bereits verwendet...</small>
         </div>
         <br>
         <p>
