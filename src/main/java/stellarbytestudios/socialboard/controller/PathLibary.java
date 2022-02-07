@@ -7,6 +7,7 @@ public class PathLibary {
 
     //Registrierungskram
     public static final String REGISTRIERUNG = "/registrierung";
+    public static final String NEWUSER = "/newuser";
 
     //Anmeldungskram
     public static final String ANMELDUNG = "/anmeldung";

@@ -6,8 +6,13 @@ import stellarbytestudios.socialboard.core.UserRec;
 // Dieses Interface gibt an, was von dem Datenbankpackage verlangt wird
 // Es wird von UserServiceRepositoryImpl implementiert und Spring gibt quasie
 // Die Funktionen durch
+// Zuständig für alles was mit dem User selbst zu tun hat
 public interface UserServiceRepository {
 
-    // Uservalidating
+    // Uservalidating beim Anmelden
     boolean validateUserLogin(UserRec user);
+
+    boolean usernameAlreadyTaken(String username);
+
+    void createNewUser(String name, String password);
 }

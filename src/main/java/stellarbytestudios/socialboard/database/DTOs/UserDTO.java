@@ -6,7 +6,6 @@ import org.springframework.data.relational.core.mapping.Table;
 import stellarbytestudios.socialboard.core.UserRec;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Table("Users")
@@ -72,6 +71,10 @@ public class UserDTO {
     public static UserDTO create(Long id, String username, String password) {
         return new UserDTO(id, username, password, new HashSet<>());
     }
+    // Jetzt auch noch ohne ID
+    public static UserDTO create(String username, String password) {
+        return new UserDTO(null, username, password, new HashSet<>());
+    }
 
     @Override
     public String toString() {
@@ -90,5 +93,9 @@ public class UserDTO {
     // Interaktion mit Records des Objekts
     public boolean equalsWithRecord(UserRec userRec){
         return (this.username.equals(userRec.username()) && this.password.equals(userRec.password()));
+    }
+
+    public String getUsername() {
+        return username;
     }
 }
