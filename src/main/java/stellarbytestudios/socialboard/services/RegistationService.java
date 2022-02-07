@@ -17,3 +17,7 @@ public class RegistationService {
         return userRepo.usernameAlreadyTaken(username);
     }
 
+    public void createNewUser(String name, String password) {
+        userRepo.createNewUser(name, password);
+    }
+}

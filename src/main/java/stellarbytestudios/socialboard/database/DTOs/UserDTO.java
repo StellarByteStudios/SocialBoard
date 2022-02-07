@@ -94,4 +94,8 @@ public class UserDTO {
     public boolean equalsWithRecord(UserRec userRec){
         return (this.username.equals(userRec.username()) && this.password.equals(userRec.password()));
     }
+
+    public String getUsername() {
+        return username;
+    }
 }

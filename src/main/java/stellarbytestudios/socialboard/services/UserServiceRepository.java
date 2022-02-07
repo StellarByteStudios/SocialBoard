@@ -13,4 +13,6 @@ public interface UserServiceRepository {
     boolean validateUserLogin(UserRec user);
 
     boolean usernameAlreadyTaken(String username);
+
+    void createNewUser(String name, String password);
 }

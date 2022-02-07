@@ -45,4 +45,11 @@ public class UserServiceRepositoryImpl implements UserServiceRepository {
         // Den Namen suchen, ob er schon vorhanden ist
         return usernamesList.contains(username);
     }
+
+    // Registriert und speichert einen neuen User
+    @Override
+    public void createNewUser(String name, String password) {
+        UserDTO newUser = UserDTO.create(name, password);
+        userCrudRepo.save(newUser);
+    }
 }
