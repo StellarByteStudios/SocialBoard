@@ -1,12 +1,17 @@
 package stellarbytestudios.socialboard.DBtest;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
+import stellarbytestudios.socialboard.core.UserRec;
 import stellarbytestudios.socialboard.database.DBcommunication.UserCrudRepo;
+import stellarbytestudios.socialboard.database.DTOs.UserDTO;
 import stellarbytestudios.socialboard.database.ServiceCommunication.UserServiceRepositoryImpl;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,18 +24,23 @@ public class SaveAndGetData {
     @Autowired
     UserCrudRepo dataBase;
 
-    UserServiceRepositoryImpl repo;
+    //UserServiceRepositoryImpl repo;
+
 
     @BeforeEach
+    @Sql({"classpath:testscript.sql"})
     public void setUp(){
-        repo = new UserServiceRepositoryImpl(dataBase);
+        //repo = new UserServiceRepositoryImpl(dataBase);
     }
 
-    // User aus der Datenbank lesen
+    // Bereits angelegten User Validieren
     @Test
-    @DisplayName("User aus der Datenbank lesen")
-    public void readUser() {
-
+    @DisplayName("User in der Datenbank Validieren (ist vorhanden)")
+    @Sql({"classpath:testscript.sql"})
+    public void validateUser() {
+        UserRec userRec = new UserRec(0, "Schüler1", "123");
+//        UserServiceRepositoryImpl repo = new UserServiceRepositoryImpl(dataBase);
+//        boolean verified = repo.validateUserLogin(userRec);
         assertThat(true).isTrue();
     }
     // Nicht vorhandener User suchen
