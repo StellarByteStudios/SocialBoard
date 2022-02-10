@@ -20,6 +20,14 @@ public class PasswordHashing {
         // Salz zurückgeben
         return salt;
     }
+
+    public static String hashPasswordWithIntsalt(String password, int salt){
+        // Erstmal Salz nutzbar machen
+        byte[] saltarray = saltIntToByte(salt);
+        // Jetzt einfach hashen und returnen
+        return hashPassword(password, saltarray);
+    }
+    // Neues Password mit Salz(Byte) hashen
     public static String hashPassword(String password, byte[] salt){
 
         // Neuen "Hasher" erzeugen
@@ -51,4 +59,17 @@ public class PasswordHashing {
 
         return stringBuilder.toString();
     }
+
+    // Salz von ByteArray zum speicherbaren String convertieren
+    public static int saltByteToInt(byte[] bytearray){
+        return ByteBuffer.wrap(bytearray).getInt();
+    }
+
+    // Salz vom gespeicherten String wieder zum ByteArray machen
+    public static byte[] saltIntToByte(int saltInt){
+        byte[] bytearray = ByteBuffer.allocate(4).putInt(saltInt).array();
+        return bytearray;
+    }
+
+
 }
