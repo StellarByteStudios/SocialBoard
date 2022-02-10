@@ -17,8 +17,10 @@ public class UserDTO {
     private Long id;
     @Column("username")
     private String username;
-    @Column("userpassword")
-    private String password;
+    @Column("userpasswordsalt")
+    private int passwordsalt;
+    @Column("userpasswordhash")
+    private String passwordhash;
     // Verknüpfung zu den Drops (ein Nutzer kann mehrere Drops verfassen)
     private Set<DropDTO> dropDTOS;
 
@@ -27,10 +29,11 @@ public class UserDTO {
     public void setID(Long newID) { this.id = newID; }
 
     // Konstruktor um das DTO zu erstellen
-    public UserDTO(Long id, String username, String password, Set<DropDTO> dropDTOS) {
+    public UserDTO(Long id, String username, int passwordsalt, String passwordhash, Set<DropDTO> dropDTOS) {
         this.id = id;
         this.username = username;
-        this.password = password;
+        this.passwordsalt = passwordsalt;
+        this.passwordhash = passwordhash;
         this.dropDTOS = dropDTOS;
     }
 
