@@ -107,7 +107,16 @@ public class UserDTO {
 
     // Interaktion mit Records des Objekts
     public boolean equalsWithRecord(UserRec userRec){
-        return (this.username.equals(userRec.username()) && this.password.equals(userRec.password()));
+        // Nutzername vergleichen
+        boolean equalUsername = this.username.equals(userRec.username());
+
+        // Passwort vergleichen
+        // das übergebene Password mit dem eingenen Salz hashen
+        String paramHash = hashPasswordWithIntsalt(userRec.password(), this.passwordsalt);
+        // Die zwei Hashcodes überprüfen
+        boolean passwordhashes = this.passwordhash.equals(paramHash);
+//        System.out.println("Der gespeicherte Hash: \t\t\t\t\t" + this.passwordhash);
+        return equalUsername && passwordhashes;
     }
 
     public String getUsername() {
