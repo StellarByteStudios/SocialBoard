@@ -8,6 +8,8 @@ import stellarbytestudios.socialboard.core.UserRec;
 import java.util.HashSet;
 import java.util.Set;
 
+import static stellarbytestudios.socialboard.database.security.PasswordHashing.*;
+
 @Table("Users")
 public class UserDTO {
 
@@ -17,8 +19,10 @@ public class UserDTO {
     private Long id;
     @Column("username")
     private String username;
-    @Column("userpassword")
-    private String password;
+    @Column("userpasswordsalt")
+    private int passwordsalt;
+    @Column("userpasswordhash")
+    private String passwordhash;
     // Verknüpfung zu den Drops (ein Nutzer kann mehrere Drops verfassen)
     private Set<DropDTO> dropDTOS;
 
@@ -27,10 +31,11 @@ public class UserDTO {
     public void setID(Long newID) { this.id = newID; }
 
     // Konstruktor um das DTO zu erstellen
-    public UserDTO(Long id, String username, String password, Set<DropDTO> dropDTOS) {
+    public UserDTO(Long id, String username, int passwordsalt, String passwordhash, Set<DropDTO> dropDTOS) {
         this.id = id;
         this.username = username;
-        this.password = password;
+        this.passwordsalt = passwordsalt;
+        this.passwordhash = passwordhash;
         this.dropDTOS = dropDTOS;
     }
 
@@ -69,18 +74,28 @@ public class UserDTO {
     // Factory für Erstellung ohne Drops (Alles außer der "Alles Konstruktor" verwirrt Spring Data JDBC)
     // Factory muss immer Statisch sein
     public static UserDTO create(Long id, String username, String password) {
-        return new UserDTO(id, username, password, new HashSet<>());
+        // Erst das Password neu Hashen
+        byte[] salt = createSalt();
+        // Salz holen und zum speichern präparieren
+        int saltAsInt = saltByteToInt(salt);
+
+        // Hashen des Passwortes
+        String hashcode = hashPasswordWithIntsalt(password, saltAsInt);
+
+        // Neuen Nutzer erzeugen
+        return new UserDTO(id, username, saltAsInt, hashcode , new HashSet<>());
     }
     // Jetzt auch noch ohne ID
     public static UserDTO create(String username, String password) {
-        return new UserDTO(null, username, password, new HashSet<>());
+        return create(null, username, password);
     }
 
     @Override
     public String toString() {
         String info = "\nThe User with the Name: " + username +
                         " and the ID: " + id +
-                        " have this password: " + password +
+                        " have this passwordsalt: " + passwordsalt +
+                        " the following passwordhash: " + passwordhash +
                         " and the following Drops: ";
         int counter = 0;
         for (DropDTO drop : dropDTOS) {
@@ -92,7 +107,16 @@ public class UserDTO {
 
     // Interaktion mit Records des Objekts
     public boolean equalsWithRecord(UserRec userRec){
-        return (this.username.equals(userRec.username()) && this.password.equals(userRec.password()));
+        // Nutzername vergleichen
+        boolean equalUsername = this.username.equals(userRec.username());
+
+        // Passwort vergleichen
+        // das übergebene Password mit dem eingenen Salz hashen
+        String paramHash = hashPasswordWithIntsalt(userRec.password(), this.passwordsalt);
+        // Die zwei Hashcodes überprüfen
+        boolean passwordhashes = this.passwordhash.equals(paramHash);
+//        System.out.println("Der gespeicherte Hash: \t\t\t\t\t" + this.passwordhash);
+        return equalUsername && passwordhashes;
     }
 
     public String getUsername() {

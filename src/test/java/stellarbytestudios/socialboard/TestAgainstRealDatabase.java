@@ -34,7 +34,10 @@ public class TestAgainstRealDatabase {
         drops.add(new DropDTO("This is der dritte nice Drop von vor 5 Stunden",
                 LocalDateTime.now().minusHours(5)));
 
-        UserDTO user1 = new UserDTO(null, "The first One", "supadupaSecred", drops);
+        UserDTO user1 = UserDTO.create("The first One", "supadupaSecred");
+        for (DropDTO d : drops) {
+            user1.addDrop(d);
+        }
         userCrudRepo.save(user1);
         System.out.println("Einfachen User mit 3 Drops hinzufügen");
         System.out.println(userCrudRepo.findAll());
