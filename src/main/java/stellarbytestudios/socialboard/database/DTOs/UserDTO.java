@@ -8,6 +8,8 @@ import stellarbytestudios.socialboard.core.UserRec;
 import java.util.HashSet;
 import java.util.Set;
 
+import static stellarbytestudios.socialboard.database.security.PasswordHashing.*;
+
 @Table("Users")
 public class UserDTO {
 
@@ -72,11 +74,20 @@ public class UserDTO {
     // Factory für Erstellung ohne Drops (Alles außer der "Alles Konstruktor" verwirrt Spring Data JDBC)
     // Factory muss immer Statisch sein
     public static UserDTO create(Long id, String username, String password) {
-        return new UserDTO(id, username, password, new HashSet<>());
+        // Erst das Password neu Hashen
+        byte[] salt = createSalt();
+        // Salz holen und zum speichern präparieren
+        int saltAsInt = saltByteToInt(salt);
+
+        // Hashen des Passwortes
+        String hashcode = hashPasswordWithIntsalt(password, saltAsInt);
+
+        // Neuen Nutzer erzeugen
+        return new UserDTO(id, username, saltAsInt, hashcode , new HashSet<>());
     }
     // Jetzt auch noch ohne ID
     public static UserDTO create(String username, String password) {
-        return new UserDTO(null, username, password, new HashSet<>());
+        return create(null, username, password);
     }
 
     @Override
