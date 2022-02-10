@@ -83,7 +83,8 @@ public class UserDTO {
     public String toString() {
         String info = "\nThe User with the Name: " + username +
                         " and the ID: " + id +
-                        " have this password: " + password +
+                        " have this passwordsalt: " + passwordsalt +
+                        " the following passwordhash: " + passwordhash +
                         " and the following Drops: ";
         int counter = 0;
         for (DropDTO drop : dropDTOS) {
