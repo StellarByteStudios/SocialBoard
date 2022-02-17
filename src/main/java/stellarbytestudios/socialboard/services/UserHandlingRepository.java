@@ -7,7 +7,7 @@ import stellarbytestudios.socialboard.core.UserRec;
 // Es wird von UserServiceRepositoryImpl implementiert und Spring gibt quasie
 // Die Funktionen durch
 // Zuständig für alles was mit dem User selbst zu tun hat
-public interface UserServiceRepository {
+public interface UserHandlingRepository {
 
     // Uservalidating beim Anmelden
     boolean validateUserLogin(UserRec user);

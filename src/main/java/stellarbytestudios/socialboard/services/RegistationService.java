@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 public class RegistationService {
 
     // Verbindung zu den Interfaces im gleichen Package
-    private final UserServiceRepository userRepo;
+    private final UserHandlingRepository userRepo;
 
     // Diese brauchen einen Konstruktor:
-    public RegistationService(UserServiceRepository userRepo) {
+    public RegistationService(UserHandlingRepository userRepo) {
         this.userRepo = userRepo;
     }
 
