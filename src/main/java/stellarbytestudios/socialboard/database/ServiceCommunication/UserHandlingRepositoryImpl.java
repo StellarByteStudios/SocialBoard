@@ -14,13 +14,13 @@ import java.util.List;
 // Es ist zusammen mit diesem Interface die Schnittstelle zwischen Services und
 // der Datenbank
 @Repository
-public class UserServiceRepositoryImpl implements UserHandlingRepository {
+public class UserHandlingRepositoryImpl implements UserHandlingRepository {
 
     // Verbindung zur Datenbank
     UserCrudRepo userCrudRepo;
 
     // Initialisierung
-    public UserServiceRepositoryImpl(UserCrudRepo userCrudRepo) {
+    public UserHandlingRepositoryImpl(UserCrudRepo userCrudRepo) {
         this.userCrudRepo = userCrudRepo;
     }
 
