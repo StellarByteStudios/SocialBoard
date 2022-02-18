@@ -31,6 +31,8 @@ public class UserPageConntroller {
         // Alle Drops aus der Datenbank holen
         List<DropRec> drops = userService.getAllDropsSortByDate();
 
+        // Die Drops dann dem Model hinzufügen
+        m.addAttribute("drops", drops);
         return "userpage";
     }
 }
