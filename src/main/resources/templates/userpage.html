@@ -3,11 +3,32 @@
 <head th:replace="fragments/commonfrag.html :: #Stdhead(title='Deine Seite')"></head>
 
 <body>
+        <!-- Alle Drops werden in Chronologischer Reihenfolge ausgegeben (neuste zuerst) -->
+        <p class="display-6">
+            Hier siehst du alle Drops die bisher geposted wurden in chronologischer Reihenfolge:
+        </p>
 
-    <h1 class="display-5">Hier sind deine Userdaten:</h1>
-    <p>
-        Die Daten sind dein Username: <span th:text="*{userprofile.username()}"></span> und dein Passwort: Hasste gedacht! XD
-    </p>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr class="table-header">
+                    <th scope="col">Autor</th>
+                    <th scope="col">Drop</th>
+                    <th scope="col">Datum</th>
+                </tr>
+                </thead>
+                <tbody th:remove="all-but-first" th:each="DropRec : ${drops}" th:object="${DropRec}">
+                    <tr class="table-bordered">
+                        <td id="author" style="background-color:#c1f3ce;" th:text="*{author}">der Autor</td>
+                        <td id="content" style="background-color:#eeeeee;" th:text="*{content}">Was wurde denn so erzählt?</td>
+                        <td id="time" style="background-color:#c9c9c9;" th:text="*{#temporals.format(creationDate,'dd-MMM-yyyy HH:mm')}">gestern</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
 
 </body>
 </html>
