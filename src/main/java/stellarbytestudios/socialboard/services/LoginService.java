@@ -9,10 +9,10 @@ import stellarbytestudios.socialboard.core.UserRec;
 public class LoginService {
 
     // Verbindung zu den Interfaces im gleichen Package
-    private final UserServiceRepository userRepo;
+    private final UserHandlingRepository userRepo;
 
     // Diese brauchen einen Konstruktor:
-    public LoginService(UserServiceRepository userRepo) {
+    public LoginService(UserHandlingRepository userRepo) {
         this.userRepo = userRepo;
     }
 

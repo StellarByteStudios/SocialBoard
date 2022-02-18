@@ -45,9 +45,9 @@ public class AnmeldungController {
         verified = loginService.validateUserLogin(userRec);
 
         if (verified){
-            redirectAttributes.addAttribute("username", name);
-            redirectAttributes.addAttribute("password", password);
-            redirectAttributes.addAttribute("verified", verified);
+            // FlashAtributes sind kurzlebig und werden lokal statt über die URL übertragen
+            // Schließt Sicherheitslücke (einfacher Accoundwechsel über URL)
+            redirectAttributes.addFlashAttribute("username", name);
 
             System.out.println("User wurde verifiziert");
             return "redirect:" + USERCONTROLLER + USERFEED;

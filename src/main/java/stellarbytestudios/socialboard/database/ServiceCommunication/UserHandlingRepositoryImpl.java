@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 import stellarbytestudios.socialboard.core.UserRec;
 import stellarbytestudios.socialboard.database.DBcommunication.UserCrudRepo;
 import stellarbytestudios.socialboard.database.DTOs.UserDTO;
-import stellarbytestudios.socialboard.services.UserServiceRepository;
+import stellarbytestudios.socialboard.services.UserHandlingRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +14,13 @@ import java.util.List;
 // Es ist zusammen mit diesem Interface die Schnittstelle zwischen Services und
 // der Datenbank
 @Repository
-public class UserServiceRepositoryImpl implements UserServiceRepository {
+public class UserHandlingRepositoryImpl implements UserHandlingRepository {
 
     // Verbindung zur Datenbank
     UserCrudRepo userCrudRepo;
 
     // Initialisierung
-    public UserServiceRepositoryImpl(UserCrudRepo userCrudRepo) {
+    public UserHandlingRepositoryImpl(UserCrudRepo userCrudRepo) {
         this.userCrudRepo = userCrudRepo;
     }
 
