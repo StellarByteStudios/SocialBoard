@@ -16,6 +16,7 @@ public class PathLibary {
     //Userseite
     public static final String USERCONTROLLER = "/user";
     public static final String USERFEED = "/personalfeed";
+    public static final String NEWDROP = "/neuerDrop";
 
 
 
