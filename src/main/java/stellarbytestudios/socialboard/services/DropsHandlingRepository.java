@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface DropsHandlingRepository {
     List<DropRec> getAllDrops();
+
+    void saveNewDrop(String username, String dropcontent);
 }

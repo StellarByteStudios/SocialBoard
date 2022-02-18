@@ -27,4 +27,7 @@ public class UserService {
         return allDrops;
     }
 
+    public void saveNewDrop(String username, String dropcontent) {
+        dropsRepo.saveNewDrop(username, dropcontent);
+    }
 }

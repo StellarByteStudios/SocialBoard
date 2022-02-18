@@ -3,6 +3,36 @@
 <head th:replace="fragments/commonfrag.html :: #Stdhead(title='Deine Seite')"></head>
 
 <body>
+    <div class="container-sm">
+        <!-- Überschrift und Begrüßung -->
+        <h1 class="display-2 text-center">Herzlich Willkommen <span th:text="*{username}"></span></h1>
+        <br>
+        <!-- Link um wieder zurück auf die Startseite zu kommen -->
+        <p class="display-6">
+            Du willst wieder zurück zur <a href="/">Startseite</a>? Kein Problem!
+        </p>
+        <br>
+        <!-- Einen eigenen Drop verfassen-->
+        <div class="container-sm">
+            <p class="display-6">
+                Was willst du loswerden und mit der Welt teilen?
+            </p>
+            Erstelle hier einen neuen Eintrag:
+            <form method="post" th:action="@{/user/neuerDrop/} + ${username}">
+                <table class="table">
+                    <tr>
+                        <textarea class="form-control" rows="3" name="dropcontent" placeholder="Teile dich mit"></textarea>
+                    </tr>
+                    <br>
+                    <tr>
+                        <button type="submit" class=" btn btn-primary">Dropen</button>
+                    </tr>
+                </table>
+            </form>
+            <hr>
+        </div>
+
+
         <!-- Alle Drops werden in Chronologischer Reihenfolge ausgegeben (neuste zuerst) -->
         <p class="display-6">
             Hier siehst du alle Drops die bisher geposted wurden in chronologischer Reihenfolge:

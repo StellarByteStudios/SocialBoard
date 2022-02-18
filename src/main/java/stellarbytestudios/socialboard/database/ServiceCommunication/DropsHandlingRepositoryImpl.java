@@ -36,6 +36,13 @@ public class DropsHandlingRepositoryImpl implements DropsHandlingRepository {
         return drops;
     }
 
+    @Override
+    public void saveNewDrop(String username, String dropcontent) {
+        UserDTO user = userCrudRepo.findUserDTOByUsername(username);
+        user.addDrop(new DropDTO(dropcontent, LocalDateTime.now()));
+        userCrudRepo.save(user);
+    }
+
     private static DropRec mapDropDTOtoRecord(String username, DropDTO dropDTO){
         DropRec record = new DropRec(username,dropDTO.getContent(), dropDTO.getDateOfWriting());
         return record;

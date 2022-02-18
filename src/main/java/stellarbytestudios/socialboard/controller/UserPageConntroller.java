@@ -35,4 +35,15 @@ public class UserPageConntroller {
         m.addAttribute("drops", drops);
         return "userpage";
     }
+
+    @PostMapping(NEWDROP + "/{username}")
+    public String userDropsSomething(@PathVariable String username, String dropcontent, RedirectAttributes readds){
+
+        // Neuen Drop abspeichern
+        userService.saveNewDrop(username, dropcontent);
+
+        // Redirecten
+        readds.addAttribute("username", username);
+        return "redirect:" + USERCONTROLLER + USERFEED;
+    }
 }
