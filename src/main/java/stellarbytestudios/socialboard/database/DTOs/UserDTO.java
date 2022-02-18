@@ -122,4 +122,7 @@ public class UserDTO {
     public String getUsername() {
         return username;
     }
+    public Set<DropDTO> getDropDTOS() {
+        return dropDTOS;
+    }
 }
