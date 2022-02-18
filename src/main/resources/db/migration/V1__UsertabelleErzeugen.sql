@@ -6,7 +6,7 @@ create table Users
 	-- Daten des Users --
 	username varchar(100) default 'defaultusername' not null,
 	userpasswordsalt int default 123456789 not null,
-	userpasswordhash varchar(130) default 'someHash' not null,
+	userpasswordhash varchar(130) default 'someHash' not null
 );
 
 -- Macht die ID des User einzigartig (keine doppelten IDs) --
