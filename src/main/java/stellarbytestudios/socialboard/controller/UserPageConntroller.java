@@ -43,7 +43,7 @@ public class UserPageConntroller {
         userService.saveNewDrop(username, dropcontent);
 
         // Redirecten
-        readds.addAttribute("username", username);
+        readds.addFlashAttribute("username", username);
         return "redirect:" + USERCONTROLLER + USERFEED;
     }
 }
