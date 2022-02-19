@@ -18,11 +18,12 @@
                 Was willst du loswerden und mit der Welt teilen?
             </p>
             Erstelle hier einen neuen Eintrag:
-            <form method="post" th:action="@{/user/neuerDrop/} + ${username}">
+            <form method="post" th:action="@{/user/neuerDrop}">
                 <table class="table">
                     <tr>
                         <textarea class="form-control" rows="3" name="dropcontent" placeholder="Teile dich mit"></textarea>
                     </tr>
+                    <input type="hidden" name="username" th:value="*{username}">
                     <br>
                     <tr>
                         <button type="submit" class=" btn btn-primary">Dropen</button>
