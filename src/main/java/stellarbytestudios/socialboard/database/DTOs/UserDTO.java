@@ -115,7 +115,6 @@ public class UserDTO {
         String paramHash = hashPasswordWithIntsalt(userRec.password(), this.passwordsalt);
         // Die zwei Hashcodes überprüfen
         boolean passwordhashes = this.passwordhash.equals(paramHash);
-//        System.out.println("Der gespeicherte Hash: \t\t\t\t\t" + this.passwordhash);
         return equalUsername && passwordhashes;
     }
 
