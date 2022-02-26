@@ -17,11 +17,12 @@ public class UserPageConntroller {
 
     // Instanziierung
     UserService userService;
-
+    // Konstruktor für automatische Injection
     public UserPageConntroller(UserService userService) {
         this.userService = userService;
     }
 
+    // Nimmt den Nutzer an und zeigt seinen Feed an (momentan noch der Globalfeed)
     @GetMapping(USERFEED)
     public String loadPersonalFeed(Model m, @ModelAttribute("username") String username){
 
@@ -36,6 +37,7 @@ public class UserPageConntroller {
         return "userpage";
     }
 
+    // Der Nutzer gibt eine Nachricht ab. Diese wird dann in der Datenbank abgespeichert und der Feed wird neu geladen
     @PostMapping(NEWDROP)
     public String userDropsSomething(String username, String dropcontent, RedirectAttributes readds){
 

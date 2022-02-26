@@ -11,13 +11,16 @@ import stellarbytestudios.socialboard.services.LoginService;
 
 import static stellarbytestudios.socialboard.controller.PathLibary.*;
 
+// Dieser Controller nimmt die Anmeldedaten entgegen, validiert diese und leitet dann auf die
+// anderen Controller weiter
+
 @Controller
 @RequestMapping(ANMELDUNG)
 public class AnmeldungController {
 
     // Instanziierung
     LoginService loginService;
-
+    // Konstruktor für automatische Injection
     public AnmeldungController(LoginService loginService) {
         this.loginService = loginService;
     }
@@ -30,6 +33,7 @@ public class AnmeldungController {
         boolean verified;
 
         // Waren die Eingaben überhaupt korrekt?
+        // Erstmal gucken, ob überhaupt genug Eingaben da sind
         if (name == null) {
             verified = false;
             m.addAttribute("verified", verified);
@@ -41,9 +45,11 @@ public class AnmeldungController {
             return "startpage";
         }
 
+        // Wenn alle Eingaben vorhanden sind, wird geschaut, ob dieser Nutzer in der Datenbank so gespeichert ist
         UserRec userRec = new UserRec(1, name, password);
         verified = loginService.validateUserLogin(userRec);
 
+        // Sind alle Verifizierungen durchgegangen wird der Userfeed angezeigt
         if (verified){
             // FlashAtributes sind kurzlebig und werden lokal statt über die URL übertragen
             // Schließt Sicherheitslücke (einfacher Accoundwechsel über URL)
@@ -53,6 +59,7 @@ public class AnmeldungController {
             return "redirect:" + USERCONTROLLER + USERFEED;
         }
         // Verifizierung fehlgeschlagen
+        // Wird zurückgeleitet auf die Startseite
         m.addAttribute("verified", verified);
         return "startpage";
 

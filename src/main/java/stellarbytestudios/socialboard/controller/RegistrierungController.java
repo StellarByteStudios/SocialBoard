@@ -8,18 +8,21 @@ import stellarbytestudios.socialboard.services.RegistationService;
 
 import static stellarbytestudios.socialboard.controller.PathLibary.*;
 
+// Dieser Controller nimmt die Daten für eine Registrierung und überprüft diese Werte
+// Ist alles in Ordnung wird der neue Nutzer in der Datenbank abgespeichert
+
 @Controller
 @RequestMapping(REGISTRIERUNG)
 public class RegistrierungController {
 
     // Instanziierung
     RegistationService loginService;
-
+    // Konstruktor für automatische Injection
     public RegistrierungController(RegistationService loginService) {
         this.loginService = loginService;
     }
 
-
+    // Nimmt die Daten für einen neuen Nutzer an und checkt diese
     @PostMapping(NEWUSER)
     public String registerNewUser(Model m,
                                   String nameregi,
@@ -28,7 +31,10 @@ public class RegistrierungController {
 
 
         System.out.println("Der Name: " + nameregi + "; das Passwort: " + passwordregi + "; die Wiederholung: " + passwordwiederholung);
-        //Sind alle eingaben da?
+
+        // Jetzt werden die Daten überprüft
+        // Eigentlich sollten die Standartwerte immer false sein. Muss ich noch überprüfen
+        // Sind alle eingaben da?
         if (nameregi.equals("") || passwordregi.equals("") || passwordwiederholung.equals("")){
             m.addAttribute("firstVisit", false);
             m.addAttribute("noInputRegi", true);
@@ -66,7 +72,7 @@ public class RegistrierungController {
         // --> müssen den neuen Nutzer jetzt auch in der Datenbank abspeichern
         loginService.createNewUser(nameregi, passwordregi);
 
-
+        // Mitteilung der Erfolgreichen Registrierung mit Link zurück zur Startseite
         return "registrationSuccessfull";
     }
 }
