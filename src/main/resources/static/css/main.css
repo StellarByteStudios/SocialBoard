@@ -1,0 +1,35 @@
+:root{
+    --col-mainorange: #ff6f22;
+    --col-greyback: #252525;
+    --col-lightgray: #9191FF;
+    --col-darkergray: #151515;
+}
+
+
+.custom-shape-divider-bottom-1645187859 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1645187859 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 160px;
+}
+
+.custom-shape-divider-bottom-1645187859 .shape-fill {
+    fill: var(--col-mainorange);
+}
+
+.smolcontainer{
+    margin-left: auto;
+    margin-right: auto;
+    width: 25vw;
+    padding-top: 4em;
+}
