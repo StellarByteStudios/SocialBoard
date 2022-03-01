@@ -2,7 +2,8 @@
 
 <!-- Tabelle zum Anmelden/Registieren (Haupttabelle)-->
 <div th:fragment="startseitentabelle" id="Startseitentabelle" class="container">
-<!--Note: bei Zugriff via th wird auf die ID referenziert-->
+<!-- Note: bei Zugriff via th:replace oder Ähnlichem wird auf die ID referenziert -->
+    <!-- Baut die Tabelle für die Startseite auf-->
     <table class="table table-bordered table-light">
         <thead>
         <tr>
@@ -12,6 +13,7 @@
         </thead>
         <tbody>
         <tr>
+            <!-- Nochmal interne Fragmente-->
             <td><div th:replace="fragments/startpagefrag.html :: #Anmeldeformular">Hier könnte ihre Anmeldung stehen</div></td>
             <td><div th:replace="fragments/startpagefrag.html :: #Registrierungsformular">Hier könnte ihre Registrierung stehen stehen</div></td>
         </tr>
@@ -21,8 +23,9 @@
 
 <!-- Anmeldeseite der Tabelle-->
 <div th:fragment="anmeldeformular" id="Anmeldeformular">
+    <!-- Anmeldung wird erst verifiziert. Bei Erfolg gibt es einen Redirect auf die Userpage -->
     <form method="get" th:action="@{/anmeldung/verifyuser}">
-        <div class="form-groop" id="">
+        <div class="form-groop">
             <label for="usernameinput">Anmeldename</label>
             <input class="form-control" type="text" name="name" id="usernameinput" placeholder="Willi123">
             <label for="paswortinput">Passwort</label>
@@ -42,6 +45,7 @@
 
 <!-- Registrierungsseite der Tabelle-->
 <div th:fragment="registrierungsformular" id="Registrierungsformular">
+    <!-- Registrierung wird überprüft und bei Richtigkeit wird ein Datensatz in der Datenbank abgelegt -->
     <form method="post" th:action="@{/registrierung/newuser}">
         <div class="form-groop" id="Registrierung">
             <label for="usernameRegistrierung">Anmeldename</label>

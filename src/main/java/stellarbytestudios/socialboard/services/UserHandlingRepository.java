@@ -9,10 +9,12 @@ import stellarbytestudios.socialboard.core.UserRec;
 // Zuständig für alles was mit dem User selbst zu tun hat
 public interface UserHandlingRepository {
 
-    // Uservalidating beim Anmelden
+    // Uservalidating beim Anmelden, ist der Nutzer so korrekt?
     boolean validateUserLogin(UserRec user);
 
+    // Schaut ob der Nutzername bereits benutzt wurde
     boolean usernameAlreadyTaken(String username);
 
+    // legt einen neuen Nutzer in der Datenbank an
     void createNewUser(String name, String password);
 }

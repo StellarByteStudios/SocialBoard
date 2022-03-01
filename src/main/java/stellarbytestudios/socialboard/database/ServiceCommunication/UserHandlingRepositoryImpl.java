@@ -27,8 +27,11 @@ public class UserHandlingRepositoryImpl implements UserHandlingRepository {
     // Überprüft ob der übergebene User so in der Datenbank steht (Name und Passwort korrekt)
     @Override
     public boolean validateUserLogin(UserRec user) {
+        // User mit diesem Namen aus der Datenbank holen
         UserDTO userInDb = userCrudRepo.findUserDTOByUsername(user.username());
+        // Ist dieser Name überhaupt abgespeichert
         if (userInDb == null) { return false; }
+        // Nutzt die Methode von UserDTO um es mit dem UserRec zu vergleichen
         return userInDb.equalsWithRecord(user);
     }
 
@@ -49,7 +52,9 @@ public class UserHandlingRepositoryImpl implements UserHandlingRepository {
     // Registriert und speichert einen neuen User
     @Override
     public void createNewUser(String name, String password) {
+        // Factory von UserDTO um einen neuen zu erstellen
         UserDTO newUser = UserDTO.create(name, password);
+        // Abspeichern des neuen Nutzers in der Datenbank
         userCrudRepo.save(newUser);
     }
 }
