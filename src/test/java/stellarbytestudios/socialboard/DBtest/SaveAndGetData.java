@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import stellarbytestudios.socialboard.core.UserRec;
 import stellarbytestudios.socialboard.database.DBcommunication.UserCrudRepo;
+import stellarbytestudios.socialboard.database.ServiceCommunication.DropsHandlingRepositoryImpl;
 import stellarbytestudios.socialboard.database.ServiceCommunication.UserHandlingRepositoryImpl;
 
 
@@ -20,10 +21,12 @@ public class SaveAndGetData {
     UserCrudRepo dataBase;
 
     UserHandlingRepositoryImpl userRepoImpl;
+    DropsHandlingRepositoryImpl dropRepoImpl;
 
     @BeforeEach
     public void setup(){
         userRepoImpl = new UserHandlingRepositoryImpl(dataBase);
+        dropRepoImpl = new DropsHandlingRepositoryImpl(dataBase);
     }
 
 
