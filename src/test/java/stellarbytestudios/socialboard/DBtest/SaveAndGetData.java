@@ -19,11 +19,11 @@ public class SaveAndGetData {
     @Autowired
     UserCrudRepo dataBase;
 
-    UserHandlingRepositoryImpl repoImpl;
+    UserHandlingRepositoryImpl userRepoImpl;
 
     @BeforeEach
     public void setup(){
-        repoImpl = new UserHandlingRepositoryImpl(dataBase);
+        userRepoImpl = new UserHandlingRepositoryImpl(dataBase);
     }
 
 
@@ -33,7 +33,7 @@ public class SaveAndGetData {
     public void validateUser1(){
         UserRec userRec = new UserRec(0, "Schüler1", "123");
 
-        boolean verified = repoImpl.validateUserLogin(userRec);
+        boolean verified = userRepoImpl.validateUserLogin(userRec);
 
         assertThat(verified).isTrue();
     }
@@ -43,7 +43,7 @@ public class SaveAndGetData {
     public void validateUser2() {
         UserRec wrongUser = new UserRec(0, "Schüler1", "1234");
 
-        boolean verified = repoImpl.validateUserLogin(wrongUser);
+        boolean verified = userRepoImpl.validateUserLogin(wrongUser);
 
         assertThat(verified).isFalse();
     }
@@ -54,7 +54,7 @@ public class SaveAndGetData {
     public void userNotFound() {
         UserRec wrongUser = new UserRec(0, "NotAvailable", "not there");
 
-        boolean verified = repoImpl.validateUserLogin(wrongUser);
+        boolean verified = userRepoImpl.validateUserLogin(wrongUser);
 
         assertThat(verified).isFalse();
     }
