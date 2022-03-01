@@ -29,6 +29,7 @@ public class SaveAndGetData {
     UserHandlingRepositoryImpl userRepoImpl;
     DropsHandlingRepositoryImpl dropRepoImpl;
 
+    // Vor jedem Test werden die Repos neu initialisiert
     @BeforeEach
     public void setup(){
         userRepoImpl = new UserHandlingRepositoryImpl(dataBase);
@@ -40,18 +41,23 @@ public class SaveAndGetData {
     @Test
     @DisplayName("User in der Datenbank Validieren (ist vorhanden)")
     public void validateUser1(){
+        // Neuen Nutzer konstruieren
         UserRec userRec = new UserRec(0, "Schüler1", "123");
 
+        // Verifizieren ob er in der Datenbank ist
         boolean verified = userRepoImpl.validateUserLogin(userRec);
 
         assertThat(verified).isTrue();
     }
+
     // Falsches Password
     @Test
     @DisplayName("Falsches Password validiert nicht")
     public void validateUser2() {
+        // Einen Nutzer mit falschem Password konstruieren
         UserRec wrongUser = new UserRec(0, "Schüler1", "1234");
 
+        // Nachschauen, ob er in der Datenbank ist
         boolean verified = userRepoImpl.validateUserLogin(wrongUser);
 
         assertThat(verified).isFalse();
@@ -61,8 +67,10 @@ public class SaveAndGetData {
     @Test
     @DisplayName("User nicht abgespeichert")
     public void userNotFound() {
+        // Nicht vorhandenen Nutzer konstruieren
         UserRec wrongUser = new UserRec(0, "NotAvailable", "not there");
 
+        // Nachschauen, ob der Nutzer wirklich nicht da ist
         boolean verified = userRepoImpl.validateUserLogin(wrongUser);
 
         assertThat(verified).isFalse();
