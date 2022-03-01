@@ -8,13 +8,14 @@ import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import stellarbytestudios.socialboard.core.DropRec;
 import stellarbytestudios.socialboard.core.UserRec;
 import stellarbytestudios.socialboard.database.DBcommunication.UserCrudRepo;
-import stellarbytestudios.socialboard.database.DTOs.DropDTO;
 import stellarbytestudios.socialboard.database.ServiceCommunication.DropsHandlingRepositoryImpl;
 import stellarbytestudios.socialboard.database.ServiceCommunication.UserHandlingRepositoryImpl;
 
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -88,7 +89,24 @@ public class SaveAndGetData {
         assertThat(drops).isNotNull();
         assertThat(drops).contains(drop1, drop2, drop3);
     }
+
     // Neuen Nutzer anlegen (Ohne Drops)
+    @Test
+    @DisplayName("Create new User and Validate him")
+    public void createUser1() {
+        // Konstanten festlegen
+        String USERNAME = "I´m new here";
+        String PASSWORD = "420";
+        // Create User nimmt daten und validate nimmt den Record. Überarbeitung fällig
+        UserRec newUser = new UserRec(5, USERNAME, PASSWORD);
+
+        // Neuen Nutzer Abspeichern
+        userRepoImpl.createNewUser(USERNAME, PASSWORD);
+        // Nachschauen, ob er da ist
+        Boolean userIsSaved = userRepoImpl.validateUserLogin(newUser);
+
+        assertThat(userIsSaved).isTrue();
+    }
 
     // Drops hinzufügen
 
