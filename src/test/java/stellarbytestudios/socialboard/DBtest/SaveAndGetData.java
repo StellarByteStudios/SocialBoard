@@ -1,17 +1,11 @@
 package stellarbytestudios.socialboard.DBtest;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
-import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.jdbc.Sql;
 import stellarbytestudios.socialboard.core.UserRec;
 import stellarbytestudios.socialboard.database.DBcommunication.UserCrudRepo;
-import stellarbytestudios.socialboard.database.DTOs.UserDTO;
 import stellarbytestudios.socialboard.database.ServiceCommunication.UserServiceRepositoryImpl;
 
 import java.sql.*;
@@ -25,14 +19,7 @@ public class SaveAndGetData {
     @Autowired
     UserCrudRepo dataBase;
 
-
-
-
-//    @BeforeEach
-//    @Sql({"classpath:testscript.sql"})
-//    public void setUp(){
-//        //repo = new UserServiceRepositoryImpl(dataBase);
-//    }
+    UserHandlingRepositoryImpl repoImpl;
 
     // Bereits angelegten User Validieren
     @Test
@@ -43,9 +30,29 @@ public class SaveAndGetData {
 //        UserServiceRepositoryImpl repoImpl = new UserServiceRepositoryImpl(dataBase);
 //        boolean verified = repoImpl.validateUserLogin(userRec);
 
-        // * * * *
-        Connection connection= DriverManager.getConnection("jdbc:h2:mem:test");
-        Statement s=connection.createStatement();
+//    @Test
+//    @DisplayName("Test Saving")
+//    public void saving_1() {
+//
+//        UserDTO hannes = new UserDTO(1l,
+//                "Hannes3",
+//                459734,
+//                "464a5f9e3614a3456c3d543434d6354f3a41c254b34",
+//                new HashSet<>());
+//
+//        database.save(hannes);
+//
+//        UserDTO meep = new UserDTO(2l,
+//                "Meep",
+//                196741,
+//                "464a5f9e3614a3456c3d543434d6354f3a41c254b34",
+//                new HashSet<>());
+//        database.save(meep);
+//        assertThat(true).isTrue();
+//    }
+    // * * * *
+//        Connection connection= DriverManager.getConnection("jdbc:h2:mem:test");
+//        Statement s=connection.createStatement();
 //        s.execute("-- für den Fall der Fälle --\n" +
 //                "drop table if exists Drops;\n" +
 //                "drop table if exists Users;\n" +
@@ -92,67 +99,65 @@ public class SaveAndGetData {
 //                "values ('The eins nicer erste Drop', CURRENT_TIMESTAMP, 1),\n" +
 //                "        ('Zweiter nicer Drop', CURRENT_TIMESTAMP, 1),\n" +
 //                "        ('Dritter wirklich interesanter Drop', CURRENT_TIMESTAMP, 1);");
-        PreparedStatement ps=connection.prepareStatement("select * from Users");
-        ResultSet r=ps.executeQuery();
-
-        ResultSetMetaData metaData = r.getMetaData();
-        System.out.println("*");
-        System.out.println("*");
-        System.out.println("*");
-        System.out.println("*");
-        while (r.next()) {
-            int count = metaData.getColumnCount();
-            for (int i = 1; i <= count; i++)
-            {
-                String columnName = metaData.getColumnName(i);
-                System.out.print("Der Columnname: " + columnName);
-                int type = metaData.getColumnType(i);
-                if (type == Types.VARCHAR || type == Types.CHAR) {
-                    System.out.println(";   Inhalt " + r.getString(columnName));
-                }
-                if (type==Types.INTEGER){
-                    System.out.println(";   Inhalt " + r.getInt(columnName));
-                }
-            }
-        }
-        System.out.println("*");
-        System.out.println("*");
-        System.out.println("*");
-        System.out.println("*");
-        r.close();
-        ps.close();
-        s.close();
-        connection.close();
-
-        // * * * *
-        assertThat(true).isTrue();
-    }
-
-    // * * * *
-    @Test
-    public void testDatabaseMem() throws SQLException {
-        testDatabase("jdbc:h2:mem:test");
-    }
-
-    private void testDatabase(String url) throws SQLException {
-        Connection connection= DriverManager.getConnection(url);
-        Statement s=connection.createStatement();
-        try {
-            s.execute("DROP TABLE PERSON");
-        } catch(SQLException sqle) {
-            System.out.println("Table not found, not dropping");
-        }
-        s.execute("CREATE TABLE PERSON (ID INT PRIMARY KEY, FIRSTNAME VARCHAR(64), LASTNAME VARCHAR(64))");
-        PreparedStatement ps=connection.prepareStatement("select * from PERSON");
-        ResultSet r=ps.executeQuery();
-        if(r.next()) {
-            System.out.println("data?");
-        }
-        r.close();
-        ps.close();
-        s.close();
-        connection.close();
-    }
+//        PreparedStatement ps=connection.prepareStatement("select * from Users");
+//        ResultSet r=ps.executeQuery();
+//
+//        ResultSetMetaData metaData = r.getMetaData();
+//        System.out.println("*");
+//        System.out.println("*");
+//        System.out.println("*");
+//        System.out.println("*");
+//        while (r.next()) {
+//            int count = metaData.getColumnCount();
+//            for (int i = 1; i <= count; i++)
+//            {
+//                String columnName = metaData.getColumnName(i);
+//                System.out.print("Der Columnname: " + columnName);
+//                int type = metaData.getColumnType(i);
+//                if (type == Types.VARCHAR || type == Types.CHAR) {
+//                    System.out.println(";   Inhalt " + r.getString(columnName));
+//                }
+//                if (type==Types.INTEGER){
+//                    System.out.println(";   Inhalt " + r.getInt(columnName));
+//                }
+//            }
+//        }
+//        System.out.println("*");
+//        System.out.println("*");
+//        System.out.println("*");
+//        System.out.println("*");
+//        r.close();
+//        ps.close();
+//        s.close();
+//        connection.close();
+//
+//        // * * * *
+//
+//    // * * * *
+//    @Test
+//    public void testDatabaseMem() throws SQLException {
+//        testDatabase("jdbc:h2:mem:test");
+//    }
+//
+//    private void testDatabase(String url) throws SQLException {
+//        Connection connection= DriverManager.getConnection(url);
+//        Statement s=connection.createStatement();
+//        try {
+//            s.execute("DROP TABLE PERSON");
+//        } catch(SQLException sqle) {
+//            System.out.println("Table not found, not dropping");
+//        }
+//        s.execute("CREATE TABLE PERSON (ID INT PRIMARY KEY, FIRSTNAME VARCHAR(64), LASTNAME VARCHAR(64))");
+//        PreparedStatement ps=connection.prepareStatement("select * from PERSON");
+//        ResultSet r=ps.executeQuery();
+//        if(r.next()) {
+//            System.out.println("data?");
+//        }
+//        r.close();
+//        ps.close();
+//        s.close();
+//        connection.close();
+//    }
 
     // * * * *
     // Nicht vorhandener User suchen
