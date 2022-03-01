@@ -6,6 +6,12 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
+    /*Eigene Farben*/
+    --col-mainorange: #ff6f22;
+    --col-greyback: #252525;
+    --col-lightgray: #9191FF;
+    --col-darkergray: #151515;
+
     --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
     --bs-purple: #6f42c1;
@@ -418,11 +424,15 @@ progress {
 }
 
 .lead {
+    font-family: Calibri, Arial;
+    color: #ff6f22;
     font-size: 1.25rem;
     font-weight: 300
 }
 
 .display-1 {
+    font-family: Calibri, Arial;
+    color: var(--col-mainorange);
     font-size: calc(1.625rem + 4.5vw);
     font-weight: 300;
     line-height: 1.2
@@ -435,6 +445,8 @@ progress {
 }
 
 .display-2 {
+    font-family: Calibri, Arial;
+    color: var(--col-mainorange);
     font-size: calc(1.575rem + 3.9vw);
     font-weight: 300;
     line-height: 1.2
@@ -447,6 +459,8 @@ progress {
 }
 
 .display-3 {
+    font-family: Calibri, Arial;
+    color: var(--col-mainorange);
     font-size: calc(1.525rem + 3.3vw);
     font-weight: 300;
     line-height: 1.2
@@ -459,6 +473,8 @@ progress {
 }
 
 .display-4 {
+    font-family: Calibri, Arial;
+    color: var(--col-mainorange);
     font-size: calc(1.475rem + 2.7vw);
     font-weight: 300;
     line-height: 1.2
@@ -471,7 +487,9 @@ progress {
 }
 
 .display-5 {
-    font-size: calc(1.425rem + 2.1vw);
+    font-family: Calibri, Arial;
+    color: var(--col-mainorange);
+    font-size: calc(1.425rem * 2.1vw);
     font-weight: 300;
     line-height: 1.2
 }
@@ -483,6 +501,8 @@ progress {
 }
 
 .display-6 {
+    font-family: Calibri, Arial;
+    color: var(--col-mainorange);
     font-size: calc(1.375rem + 1.5vw);
     font-weight: 300;
     line-height: 1.2
@@ -1830,23 +1850,23 @@ progress {
 
 .table {
     --bs-table-bg: transparent;
-    --bs-table-striped-color: #212529;
+    --bs-table-striped-color: var(col-greyback);
     --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
-    --bs-table-active-color: #212529;
+    --bs-table-active-color: var(col-greyback);
     --bs-table-active-bg: rgba(0, 0, 0, 0.1);
-    --bs-table-hover-color: #212529;
+    --bs-table-hover-color: var(col-greyback);
     --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
     width: 100%;
     margin-bottom: 1rem;
     color: #212529;
     vertical-align: top;
-    border-color: #dee2e6
+    border-color: var(--col-darkergray)
 }
 
 .table > :not(caption) > * > * {
     padding: .5rem .5rem;
     background-color: var(--bs-table-bg);
-    border-bottom-width: 1px;
+    border-bottom-width: 2px;
     box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg)
 }
 
@@ -1871,11 +1891,11 @@ progress {
 }
 
 .table-bordered > :not(caption) > * {
-    border-width: 1px 0
+    border-width: 2px 0
 }
 
 .table-bordered > :not(caption) > * > * {
-    border-width: 0 1px
+    border-width: 0 2px
 }
 
 .table-borderless > :not(caption) > * > * {
