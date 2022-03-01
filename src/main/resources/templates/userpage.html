@@ -3,11 +3,63 @@
 <head th:replace="fragments/commonfrag.html :: #Stdhead(title='Deine Seite')"></head>
 
 <body>
+    <div class="container-sm">
+        <!-- Überschrift und Begrüßung -->
+        <h1 class="display-2 text-center">Herzlich Willkommen <span th:text="*{username}"></span></h1>
+        <br>
+        <!-- Link um wieder zurück auf die Startseite zu kommen -->
+        <p class="display-6">
+            Du willst wieder zurück zur <a href="/">Startseite</a>? Kein Problem!
+        </p>
+        <br>
+        <!-- Einen eigenen Drop verfassen-->
+        <div class="container-sm">
+            <p class="display-6">
+                Was willst du loswerden und mit der Welt teilen?
+            </p>
+            Erstelle hier einen neuen Eintrag:
+            <form method="post" th:action="@{/user/neuerDrop}">
+                <table class="table">
+                    <tr>
+                        <textarea class="form-control" rows="3" name="dropcontent" placeholder="Teile dich mit"></textarea>
+                    </tr>
+                    <input type="hidden" name="username" th:value="*{username}">
+                    <br>
+                    <tr>
+                        <button type="submit" class=" btn btn-primary">Dropen</button>
+                    </tr>
+                </table>
+            </form>
+            <hr>
+        </div>
 
-    <h1 class="display-5">Hier sind deine Userdaten:</h1>
-    <p>
-        Die Daten sind dein Username: <span th:text="*{userprofile.username()}"></span> und dein Passwort: Hasste gedacht! XD
-    </p>
+
+        <!-- Alle Drops werden in Chronologischer Reihenfolge ausgegeben (neuste zuerst) -->
+        <p class="display-6">
+            Hier siehst du alle Drops die bisher geposted wurden in chronologischer Reihenfolge:
+        </p>
+
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr class="table-header">
+                    <th scope="col">Autor</th>
+                    <th scope="col">Drop</th>
+                    <th scope="col">Datum</th>
+                </tr>
+                </thead>
+                <tbody th:remove="all-but-first" th:each="DropRec : ${drops}" th:object="${DropRec}">
+                    <tr class="table-bordered">
+                        <td id="author" style="background-color:#c1f3ce;" th:text="*{author}">der Autor</td>
+                        <td id="content" style="background-color:#eeeeee;" th:text="*{content}">Was wurde denn so erzählt?</td>
+                        <td id="time" style="background-color:#c9c9c9;" th:text="*{#temporals.format(creationDate,'dd-MMM-yyyy HH:mm')}">gestern</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
 
 </body>
 </html>

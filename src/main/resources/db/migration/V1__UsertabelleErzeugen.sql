@@ -10,7 +10,7 @@ create table USERS
 	-- Macht die ID zum Primärschlüssel --
 	constraint USERS_pk primary key (userID)
 );
-
--- Macht die ID des User einzigartig (keine doppelten IDs) --
-create unique index USERS_USERID_uindex
-	on USERS (userID);
+--
+-- -- Macht die ID des User einzigartig (keine doppelten IDs) --
+-- create unique index USERS_USERID_uindex
+-- 	on USERS (userID);

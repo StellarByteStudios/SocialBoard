@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import stellarbytestudios.socialboard.database.DBcommunication.UserCrudRepo;
 import stellarbytestudios.socialboard.database.DTOs.DropDTO;
 import stellarbytestudios.socialboard.database.DTOs.UserDTO;
-import stellarbytestudios.socialboard.services.UserServiceRepository;
+import stellarbytestudios.socialboard.services.UserHandlingRepository;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -19,7 +19,7 @@ public class TestAgainstRealDatabase {
     private UserCrudRepo userCrudRepo;
 
     @Autowired
-    private UserServiceRepository serviceRepository;
+    private UserHandlingRepository serviceRepository;
 
 
     @Test

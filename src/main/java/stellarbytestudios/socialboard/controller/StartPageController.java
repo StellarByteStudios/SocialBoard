@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import static stellarbytestudios.socialboard.controller.PathLibary.*;
 
+// Dieser Controller Zeigt einfach nur die Startseite an und formatiert diese ein wenig
+
 @Controller
 public class StartPageController {
 
