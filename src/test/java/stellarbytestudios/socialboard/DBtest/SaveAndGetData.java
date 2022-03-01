@@ -31,6 +31,40 @@ public class SaveAndGetData {
         boolean verified = repoImpl.validateUserLogin(userRec);
 
         assertThat(verified).isTrue();
+    }
+    // Falsches Password
+    @Test
+    @DisplayName("Falsches Password validiert nicht")
+    public void validateUser2() {
+        UserRec wrongUser = new UserRec(0, "Schüler1", "1234");
+        repoImpl = new UserHandlingRepositoryImpl(dataBase);
+
+        boolean verified = repoImpl.validateUserLogin(wrongUser);
+
+        assertThat(verified).isFalse();
+    }
+
+    // Nicht vorhandener User suchen
+    @Test
+    @DisplayName("User nicht abgespeichert")
+    public void userNotFound() {
+        UserRec wrongUser = new UserRec(0, "NotAvailable", "not there");
+        repoImpl = new UserHandlingRepositoryImpl(dataBase);
+
+        boolean verified = repoImpl.validateUserLogin(wrongUser);
+
+        assertThat(verified).isFalse();
+    }
+
+    // Drops aus der Datenbank holen
+
+    // Neuen Nutzer anlegen (Ohne Drops)
+
+    // Drops hinzufügen
+
+    // Drops bearbeiten
+
+    // Drop Löschen
 
 //    @Test
 //    @DisplayName("Test Saving")
@@ -162,15 +196,5 @@ public class SaveAndGetData {
 //    }
 
     // * * * *
-    // Nicht vorhandener User suchen
 
-    // Drops aus der Datenbank holen
-
-    // Neuen Nutzer anlegen (Ohne Drops)
-
-    // Drops hinzufügen
-
-    // Drops bearbeiten
-
-    // Drop Löschen
 }
