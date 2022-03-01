@@ -5,13 +5,13 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
-@Table("Drops")
+@Table("DROPS")
 public class DropDTO {
 
     // Daten die in der Datenbank gespeichert werden
-    @Column("content")
+    @Column("CONTENT")
     private String content;
-    @Column("creationDate")
+    @Column("CREATIONDATE")
     private LocalDateTime dateOfWriting;
 
     //  * * Notwendige Methoden für die Datenbank * * //

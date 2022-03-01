@@ -14,7 +14,7 @@ import java.util.Set;
 
 @SpringBootTest
 public class TestAgainstRealDatabase {
-
+/*
     @Autowired
     private UserCrudRepo userCrudRepo;
 
@@ -102,5 +102,5 @@ public class TestAgainstRealDatabase {
         System.out.println(userCrudRepo.findAll());
         System.out.println();
     }
-
+*/
 }
