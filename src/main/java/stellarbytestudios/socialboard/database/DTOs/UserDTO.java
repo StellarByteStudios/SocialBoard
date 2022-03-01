@@ -10,18 +10,18 @@ import java.util.Set;
 
 import static stellarbytestudios.socialboard.database.security.PasswordHashing.*;
 
-@Table("Users")
+@Table("USERS")
 public class UserDTO {
 
     // Daten die in der Datenbank gespeichert werden
     @Id
-    @Column("userID")
+    @Column("USERID")
     private Long id;
-    @Column("username")
+    @Column("USERNAME")
     private String username;
-    @Column("userpasswordsalt")
+    @Column("USERPASSWORDSALT")
     private int passwordsalt;
-    @Column("userpasswordhash")
+    @Column("USERPASSWORDHASH")
     private String passwordhash;
     // Verknüpfung zu den Drops (ein Nutzer kann mehrere Drops verfassen)
     private Set<DropDTO> dropDTOS;
