@@ -9,7 +9,6 @@ import stellarbytestudios.socialboard.core.UserRec;
 import stellarbytestudios.socialboard.database.DBcommunication.UserCrudRepo;
 import stellarbytestudios.socialboard.database.ServiceCommunication.UserHandlingRepositoryImpl;
 
-import java.sql.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
