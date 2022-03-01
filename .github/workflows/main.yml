@@ -1,0 +1,17 @@
+name: Automatic Build and Testing
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:  
+      - name: Git Checkout
+        uses: actions/checkout@v1
+      - name: Install Java
+        uses: action/setup-java@v1
+        with:
+          java-version: 17
+      - name: Run Gradle
+        run: ./gradlew check
+    
