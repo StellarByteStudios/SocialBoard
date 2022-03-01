@@ -109,6 +109,30 @@ public class SaveAndGetData {
     }
 
     // Drops hinzufügen
+    @Test
+    @DisplayName("Add new Drops")
+    public void newDrop1() {
+        // Konstanten festlegen
+        String USERNAME = "WriteAlot";
+        String PASSWORD = "69";
+        String CONTENT = "I write a lot of stuff";
+
+        // Nutzer anlegen
+        userRepoImpl.createNewUser(USERNAME, PASSWORD);
+        // Drop hinzufügen
+        dropRepoImpl.saveNewDrop(USERNAME, CONTENT);
+
+        // Drop Auslesen
+        List<DropRec> allDrops = dropRepoImpl.getAllDrops();
+
+        // Drops Assertable machen. Macht alle Drops zu einem Author Content Paar
+        Set<String[]> authorContentPairs = allDrops.stream().
+                map(drop -> new String[]{drop.author(), drop.content()}).
+                collect(Collectors.toSet());
+
+        // Ist das Ursprungspar vorhanden
+        assertThat(authorContentPairs).contains(new String[] {USERNAME, CONTENT});
+    }
 
     // Drops bearbeiten
 
