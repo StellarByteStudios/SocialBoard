@@ -1,5 +1,6 @@
 package stellarbytestudios.socialboard.DBtest;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,17 @@ public class SaveAndGetData {
 
     UserHandlingRepositoryImpl repoImpl;
 
+    @BeforeEach
+    public void setup(){
+        repoImpl = new UserHandlingRepositoryImpl(dataBase);
+    }
+
+
     // Bereits angelegten User Validieren
     @Test
     @DisplayName("User in der Datenbank Validieren (ist vorhanden)")
     public void validateUser1(){
         UserRec userRec = new UserRec(0, "Schüler1", "123");
-        repoImpl = new UserHandlingRepositoryImpl(dataBase);
 
         boolean verified = repoImpl.validateUserLogin(userRec);
 
@@ -37,7 +43,6 @@ public class SaveAndGetData {
     @DisplayName("Falsches Password validiert nicht")
     public void validateUser2() {
         UserRec wrongUser = new UserRec(0, "Schüler1", "1234");
-        repoImpl = new UserHandlingRepositoryImpl(dataBase);
 
         boolean verified = repoImpl.validateUserLogin(wrongUser);
 
@@ -49,7 +54,6 @@ public class SaveAndGetData {
     @DisplayName("User nicht abgespeichert")
     public void userNotFound() {
         UserRec wrongUser = new UserRec(0, "NotAvailable", "not there");
-        repoImpl = new UserHandlingRepositoryImpl(dataBase);
 
         boolean verified = repoImpl.validateUserLogin(wrongUser);
 
