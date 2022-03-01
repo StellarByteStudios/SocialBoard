@@ -5,11 +5,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+import stellarbytestudios.socialboard.core.DropRec;
 import stellarbytestudios.socialboard.core.UserRec;
 import stellarbytestudios.socialboard.database.DBcommunication.UserCrudRepo;
+import stellarbytestudios.socialboard.database.DTOs.DropDTO;
 import stellarbytestudios.socialboard.database.ServiceCommunication.DropsHandlingRepositoryImpl;
 import stellarbytestudios.socialboard.database.ServiceCommunication.UserHandlingRepositoryImpl;
 
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -63,7 +68,26 @@ public class SaveAndGetData {
     }
 
     // Drops aus der Datenbank holen
+    @Test
+    @DisplayName("Get all Drops and pick some existence")
+    public void getDrops1() {
+        // Einige Drops anlegen zum Rauspicken
+        DropRec drop1 = new DropRec("The First One",
+                "Sehr weit in der Vergangenheit wurde ich geschrieben",
+                LocalDateTime.of(1994,1,1, 12,30,3));
+        DropRec drop2 = new DropRec("The First One",
+                "Ich wurde nicht soo weit in der Vergangenheit geschrieben",
+                LocalDateTime.of(2010,1,1, 12,54,11));
+        DropRec drop3 = new DropRec("Schüler1",
+                "Das war schon gestern",
+                LocalDateTime.of(2022,2,16, 18,22,4));
+        // Alles Drops holen
+        List<DropRec> drops = dropRepoImpl.getAllDrops();
 
+        // Testen
+        assertThat(drops).isNotNull();
+        assertThat(drops).contains(drop1, drop2, drop3);
+    }
     // Neuen Nutzer anlegen (Ohne Drops)
 
     // Drops hinzufügen
