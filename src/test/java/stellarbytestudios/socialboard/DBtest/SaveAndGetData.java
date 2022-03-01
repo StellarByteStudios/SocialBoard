@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import stellarbytestudios.socialboard.core.UserRec;
 import stellarbytestudios.socialboard.database.DBcommunication.UserCrudRepo;
-import stellarbytestudios.socialboard.database.ServiceCommunication.UserServiceRepositoryImpl;
+import stellarbytestudios.socialboard.database.ServiceCommunication.UserHandlingRepositoryImpl;
 
 import java.sql.*;
 
@@ -24,11 +24,13 @@ public class SaveAndGetData {
     // Bereits angelegten User Validieren
     @Test
     @DisplayName("User in der Datenbank Validieren (ist vorhanden)")
-    @Sql({"classpath:testscript.sql"})
-    public void validateUser() throws SQLException {
+    public void validateUser1(){
         UserRec userRec = new UserRec(0, "Schüler1", "123");
-//        UserServiceRepositoryImpl repoImpl = new UserServiceRepositoryImpl(dataBase);
-//        boolean verified = repoImpl.validateUserLogin(userRec);
+        repoImpl = new UserHandlingRepositoryImpl(dataBase);
+
+        boolean verified = repoImpl.validateUserLogin(userRec);
+
+        assertThat(verified).isTrue();
 
 //    @Test
 //    @DisplayName("Test Saving")
