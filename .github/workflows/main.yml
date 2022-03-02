@@ -12,6 +12,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
+      - name: Start Dockercontainer
+        run: DB_USER=${{ secrets.DB_USER }} DB_PASSWORD=${{ secrets.DB_PASSWORD }} docker-compose up -d
       - name: Make gradlew executable
         run: chmod +x ./gradlew
       - name: Run Gradle
