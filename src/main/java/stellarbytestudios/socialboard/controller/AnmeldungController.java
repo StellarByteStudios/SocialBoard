@@ -46,8 +46,7 @@ public class AnmeldungController {
         }
 
         // Wenn alle Eingaben vorhanden sind, wird geschaut, ob dieser Nutzer in der Datenbank so gespeichert ist
-        UserRec userRec = new UserRec(1, name, password);
-        verified = loginService.validateUserLogin(userRec);
+        verified = loginService.validateUserLogin(name, password);
 
         // Sind alle Verifizierungen durchgegangen wird der Userfeed angezeigt
         if (verified){
