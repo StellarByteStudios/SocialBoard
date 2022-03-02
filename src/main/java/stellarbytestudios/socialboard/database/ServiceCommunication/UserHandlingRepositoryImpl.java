@@ -1,7 +1,6 @@
 package stellarbytestudios.socialboard.database.ServiceCommunication;
 
 import org.springframework.stereotype.Repository;
-import stellarbytestudios.socialboard.core.UserRec;
 import stellarbytestudios.socialboard.database.DBcommunication.UserCrudRepo;
 import stellarbytestudios.socialboard.database.DTOs.UserDTO;
 import stellarbytestudios.socialboard.services.UserHandlingRepository;
@@ -26,13 +25,13 @@ public class UserHandlingRepositoryImpl implements UserHandlingRepository {
 
     // Überprüft ob der übergebene User so in der Datenbank steht (Name und Passwort korrekt)
     @Override
-    public boolean validateUserLogin(UserRec user) {
+    public boolean validateUserLogin(String name, String password) {
         // User mit diesem Namen aus der Datenbank holen
-        UserDTO userInDb = userCrudRepo.findUserDTOByUsername(user.username());
+        UserDTO userInDb = userCrudRepo.findUserDTOByUsername(name);
         // Ist dieser Name überhaupt abgespeichert
         if (userInDb == null) { return false; }
         // Nutzt die Methode von UserDTO um es mit dem UserRec zu vergleichen
-        return userInDb.equalsWithRecord(user);
+        return userInDb.evaluatePassword(name, password);
     }
 
     // Überprüft, ob ein Nutzer mit diesem Namen bereits in der Datenbank ist

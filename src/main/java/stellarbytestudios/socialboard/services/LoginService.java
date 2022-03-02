@@ -18,7 +18,7 @@ public class LoginService {
 
     // * * Methoden * * //
     // Methoden zum validieren
-    public boolean validateUserLogin(UserRec user){
-        return userRepo.validateUserLogin(user);
+    public boolean validateUserLogin(String name, String password){
+        return userRepo.validateUserLogin(name, password);
     }
 }
