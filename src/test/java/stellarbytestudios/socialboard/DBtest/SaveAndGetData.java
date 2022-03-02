@@ -42,10 +42,11 @@ public class SaveAndGetData {
     @DisplayName("User in der Datenbank Validieren (ist vorhanden)")
     public void validateUser1(){
         // Neuen Nutzer konstruieren
-        UserRec userRec = new UserRec("Schüler1", "123");
+        String USERNAME = "Schüler1";
+        String PASSWORD = "123";
 
         // Verifizieren ob er in der Datenbank ist
-        boolean verified = userRepoImpl.validateUserLogin(userRec);
+        boolean verified = userRepoImpl.validateUserLogin(USERNAME, PASSWORD);
 
         assertThat(verified).isTrue();
     }
@@ -55,10 +56,11 @@ public class SaveAndGetData {
     @DisplayName("Falsches Password validiert nicht")
     public void validateUser2() {
         // Einen Nutzer mit falschem Password konstruieren
-        UserRec wrongUser = new UserRec("Schüler1", "1234");
+        String USERNAME = "Schüler1";
+        String PASSWORD = "1234";
 
         // Nachschauen, ob er in der Datenbank ist
-        boolean verified = userRepoImpl.validateUserLogin(wrongUser);
+        boolean verified = userRepoImpl.validateUserLogin(USERNAME, PASSWORD);
 
         assertThat(verified).isFalse();
     }
@@ -68,10 +70,11 @@ public class SaveAndGetData {
     @DisplayName("User nicht abgespeichert")
     public void userNotFound() {
         // Nicht vorhandenen Nutzer konstruieren
-        UserRec wrongUser = new UserRec("NotAvailable", "not there");
+        String USERNAME = "NotAvailable";
+        String PASSWORD = "not there";
 
         // Nachschauen, ob der Nutzer wirklich nicht da ist
-        boolean verified = userRepoImpl.validateUserLogin(wrongUser);
+        boolean verified = userRepoImpl.validateUserLogin(USERNAME, PASSWORD);
 
         assertThat(verified).isFalse();
     }
@@ -105,13 +108,11 @@ public class SaveAndGetData {
         // Konstanten festlegen
         String USERNAME = "I´m new here";
         String PASSWORD = "420";
-        // Create User nimmt daten und validate nimmt den Record. Überarbeitung fällig
-        UserRec newUser = new UserRec(USERNAME, PASSWORD);
 
         // Neuen Nutzer Abspeichern
         userRepoImpl.createNewUser(USERNAME, PASSWORD);
         // Nachschauen, ob er da ist
-        Boolean userIsSaved = userRepoImpl.validateUserLogin(newUser);
+        Boolean userIsSaved = userRepoImpl.validateUserLogin(USERNAME, PASSWORD);
 
         assertThat(userIsSaved).isTrue();
     }
