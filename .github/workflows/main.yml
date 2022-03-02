@@ -17,5 +17,5 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
       - name: Run Gradle
-        run: ./gradlew check --stacktrace
+        run: DB_USER=${{ secrets.DB_USER }} DB_PASSWORD=${{ secrets.DB_PASSWORD }} ./gradlew check --stacktrace
     
