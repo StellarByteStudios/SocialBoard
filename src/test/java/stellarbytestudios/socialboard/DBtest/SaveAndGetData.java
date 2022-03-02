@@ -42,7 +42,7 @@ public class SaveAndGetData {
     @DisplayName("User in der Datenbank Validieren (ist vorhanden)")
     public void validateUser1(){
         // Neuen Nutzer konstruieren
-        UserRec userRec = new UserRec(0, "Schüler1", "123");
+        UserRec userRec = new UserRec("Schüler1", "123");
 
         // Verifizieren ob er in der Datenbank ist
         boolean verified = userRepoImpl.validateUserLogin(userRec);
@@ -55,7 +55,7 @@ public class SaveAndGetData {
     @DisplayName("Falsches Password validiert nicht")
     public void validateUser2() {
         // Einen Nutzer mit falschem Password konstruieren
-        UserRec wrongUser = new UserRec(0, "Schüler1", "1234");
+        UserRec wrongUser = new UserRec("Schüler1", "1234");
 
         // Nachschauen, ob er in der Datenbank ist
         boolean verified = userRepoImpl.validateUserLogin(wrongUser);
@@ -68,7 +68,7 @@ public class SaveAndGetData {
     @DisplayName("User nicht abgespeichert")
     public void userNotFound() {
         // Nicht vorhandenen Nutzer konstruieren
-        UserRec wrongUser = new UserRec(0, "NotAvailable", "not there");
+        UserRec wrongUser = new UserRec("NotAvailable", "not there");
 
         // Nachschauen, ob der Nutzer wirklich nicht da ist
         boolean verified = userRepoImpl.validateUserLogin(wrongUser);
@@ -106,7 +106,7 @@ public class SaveAndGetData {
         String USERNAME = "I´m new here";
         String PASSWORD = "420";
         // Create User nimmt daten und validate nimmt den Record. Überarbeitung fällig
-        UserRec newUser = new UserRec(5, USERNAME, PASSWORD);
+        UserRec newUser = new UserRec(USERNAME, PASSWORD);
 
         // Neuen Nutzer Abspeichern
         userRepoImpl.createNewUser(USERNAME, PASSWORD);
