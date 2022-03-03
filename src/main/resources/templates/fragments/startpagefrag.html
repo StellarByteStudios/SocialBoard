@@ -37,7 +37,7 @@
         </p>
 
         <p><!-- Wenn die Anmeldung schiefgelaufen ist -->
-            <span class="alert-warning" th:unless="${verified}">Dein Nutzername oder Passwort sind Falsch</span>
+            <span class="alert-warning" th:if="${wrongData}">Dein Nutzername oder Passwort sind Falsch</span>
         </p>
     </form>
 </div>

@@ -30,37 +30,33 @@ public class AnmeldungController {
     public String verify(Model m, RedirectAttributes redirectAttributes, String name, String password){
 
         System.out.println(name + " und " + password);
-        boolean verified;
 
         // Waren die Eingaben überhaupt korrekt?
         // Erstmal gucken, ob überhaupt genug Eingaben da sind
         if (name == null) {
-            verified = false;
-            m.addAttribute("verified", verified);
+            m.addAttribute("wrongData", true);
             return "startpage";
         }
         if (password == null) {
-            verified = false;
-            m.addAttribute("verified", verified);
+            m.addAttribute("wrongData", true);
             return "startpage";
         }
 
         // Wenn alle Eingaben vorhanden sind, wird geschaut, ob dieser Nutzer in der Datenbank so gespeichert ist
-        verified = loginService.validateUserLogin(name, password);
-
-        // Sind alle Verifizierungen durchgegangen wird der Userfeed angezeigt
-        if (verified){
-            // FlashAtributes sind kurzlebig und werden lokal statt über die URL übertragen
-            // Schließt Sicherheitslücke (einfacher Accoundwechsel über URL)
-            redirectAttributes.addFlashAttribute("username", name);
-
-            System.out.println("User wurde verifiziert");
-            return "redirect:" + USERCONTROLLER + USERFEED;
+        if (!loginService.validateUserLogin(name, password)){
+            // Verifizierung fehlgeschlagen
+            // Wird zurückgeleitet auf die Startseite
+            m.addAttribute("wrongData", true);
+            return "startpage";
         }
-        // Verifizierung fehlgeschlagen
-        // Wird zurückgeleitet auf die Startseite
-        m.addAttribute("verified", verified);
-        return "startpage";
+        // Sind alle Verifizierungen durchgegangen wird der Userfeed angezeigt
+        // FlashAtributes sind kurzlebig und werden lokal statt über die URL übertragen
+        // Schließt Sicherheitslücke (einfacher Accoundwechsel über URL)
+        redirectAttributes.addFlashAttribute("username", name);
+
+        System.out.println("User wurde verifiziert");
+        return "redirect:" + USERCONTROLLER + USERFEED;
+
 
     }
 }

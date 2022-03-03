@@ -40,8 +40,6 @@ public class RegistrierungController {
             m.addAttribute("noInputRegi", true);
             m.addAttribute("falsePassword", false);
             m.addAttribute("nameTaken", false);
-            // Anmeldung soll nicht verändert werden (Work in Progress)
-            m.addAttribute("verified", true);
 
             return "startpage";
         }
@@ -52,8 +50,6 @@ public class RegistrierungController {
             m.addAttribute("noInputRegi", false);
             m.addAttribute("falsePassword", false);
             m.addAttribute("nameTaken", true);
-            // Anmeldung soll nicht verändert werden (Work in Progress)
-            m.addAttribute("verified", true);
 
             return "startpage";
         }
@@ -63,8 +59,6 @@ public class RegistrierungController {
             m.addAttribute("noInputRegi", false);
             m.addAttribute("falsePassword", true);
             m.addAttribute("nameTaken", false);
-            // Anmeldung soll nicht verändert werden (Work in Progress)
-            m.addAttribute("verified", true);
 
             return "startpage";
         }
