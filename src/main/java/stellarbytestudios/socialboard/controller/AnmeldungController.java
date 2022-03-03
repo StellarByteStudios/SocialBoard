@@ -29,8 +29,6 @@ public class AnmeldungController {
     @GetMapping(VERIFYUSER)
     public String verify(Model m, RedirectAttributes redirectAttributes, String name, String password){
 
-        System.out.println(name + " und " + password);
-
         // Waren die Eingaben überhaupt korrekt?
         // Erstmal gucken, ob überhaupt genug Eingaben da sind
         if (name == null) {

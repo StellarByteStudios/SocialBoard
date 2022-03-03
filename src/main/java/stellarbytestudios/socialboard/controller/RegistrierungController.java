@@ -30,8 +30,6 @@ public class RegistrierungController {
                                   String passwordwiederholung){
 
 
-        System.out.println("Der Name: " + nameregi + "; das Passwort: " + passwordregi + "; die Wiederholung: " + passwordwiederholung);
-
         // Jetzt werden die Daten überprüft
         // Eigentlich sollten die Standartwerte immer false sein. Muss ich noch überprüfen
         // Sind alle eingaben da?
