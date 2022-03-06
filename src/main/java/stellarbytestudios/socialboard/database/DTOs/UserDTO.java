@@ -43,6 +43,7 @@ public class UserDTO {
     }
 
     // * * Zusatzmethoden * * //
+    // * Drops * //
     // Drop aus dem Set bekommen durch seinen Inhalt
     private DropDTO getDropWithString(String content){
         for(DropDTO drop : this.dropDTOS) {
@@ -74,6 +75,7 @@ public class UserDTO {
         this.dropDTOS.add(new DropDTO(newContent, toChange.getDateOfWriting()));
     }
 
+    // * Factories * //
     // Factory für Erstellung ohne Drops oder Follower (Alles außer der "Alles Konstruktor" verwirrt Spring Data JDBC)
     // Factory muss immer Statisch sein
     public static UserDTO create(Long id, String username, String password) {
@@ -93,6 +95,7 @@ public class UserDTO {
         return create(null, username, password);
     }
 
+    // * To-String * //
     @Override
     public String toString() {
         String info = "\nThe User with the Name: " + username +
@@ -108,7 +111,7 @@ public class UserDTO {
         return info;
     }
 
-    // Interaktion mit Records des Objekts
+    // * Interaktion mit den Daten des Objekts * //
     public boolean evaluatePassword(String name, String password){
         // Nutzername vergleichen
         boolean equalUsername = this.username.equals(name);
