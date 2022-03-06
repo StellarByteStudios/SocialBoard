@@ -13,6 +13,6 @@ values ('Hey Leute, ich bin Müller, ich bin neu hier', '2021-01-01T12:30:00', 3
         ('Ach nicht viel, habe gerade Urlaub und versuche ein wenig zu entspannen', '2021-01-01T12:34:00', 3),
         ('Oha, das hört sich echt nice an :)', '2021-01-01T12:35:00', 3),
         ('Was geht leude? Freut mich, das ihr hier zu uns gefunden habt. Ich bin Hank und bin schon etwas länger hier.
-        Es ist immer eine Freude, wenn sich hier neue Leute hin verirren', '2021-01-01T12:36:00', 6),
+        Es ist immer eine Freude, wenn sich hier neue Leute hin verirren', '2021-01-01T12:36:00', 5),
         ('Hey Hank, freut mich dich kennen zu lernen \o/', '2021-01-01T12:37:00', 4),
         ('Mich auch', '2021-01-01T12:38:00', 5);
