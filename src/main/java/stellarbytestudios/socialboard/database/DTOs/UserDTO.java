@@ -75,6 +75,32 @@ public class UserDTO {
         this.dropDTOS.add(new DropDTO(newContent, toChange.getDateOfWriting()));
     }
 
+    // * Follower * //
+    // Methoden ähneln sehr den der Drops
+    // Holt einen Follower mit seiner ID aus dem Set
+    private FollowerRef getFollowerById(Long id){
+        for(FollowerRef fol : this.follower) {
+            if (fol.getId().equals(id)){
+                return fol;
+            }
+        }
+        return null;
+    }
+
+    // adding
+    public void addFollower(FollowerRef follower){
+        this.follower.add(follower);
+    }
+
+    // removing
+    public void removeFollowerById(Long toRemove){
+        removefollower(getFollowerById(toRemove));
+    }
+    private void removefollower(FollowerRef folToRemove){
+        if (folToRemove == null) { return; }
+        this.follower.remove(folToRemove);
+    }
+
     // * Factories * //
     // Factory für Erstellung ohne Drops oder Follower (Alles außer der "Alles Konstruktor" verwirrt Spring Data JDBC)
     // Factory muss immer Statisch sein
