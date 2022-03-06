@@ -26,14 +26,14 @@ public class UserDTO {
     // Verknüpfung zu den Drops (ein Nutzer kann mehrere Drops verfassen)
     private Set<DropDTO> dropDTOS;
     // Verknüpfung zu den Follower (Die Liste an Followern folgt den User)
-    private Set<FollowerRef> follower;
+    private Set<FollowerRefDTO> follower;
 
     //  * * Notwendige Methoden für die Datenbank * * //
     // Set ID brauch Spring um den Autoinkrement anzupassen
     public void setID(Long newID) { this.id = newID; }
 
     // Konstruktor um das DTO zu erstellen
-    public UserDTO(Long id, String username, int passwordsalt, String passwordhash, Set<DropDTO> dropDTOS, Set<FollowerRef> follower) {
+    public UserDTO(Long id, String username, int passwordsalt, String passwordhash, Set<DropDTO> dropDTOS, Set<FollowerRefDTO> follower) {
         this.id = id;
         this.username = username;
         this.passwordsalt = passwordsalt;
@@ -78,9 +78,9 @@ public class UserDTO {
     // * Follower * //
     // Methoden ähneln sehr den der Drops
     // Holt einen Follower mit seiner ID aus dem Set
-    private FollowerRef getFollowerById(Long id){
-        for(FollowerRef fol : this.follower) {
-            if (fol.getId().equals(id)){
+    private FollowerRefDTO getFollowerById(Long id){
+        for(FollowerRefDTO fol : this.follower) {
+            if (fol.getFollowerID().equals(id)){
                 return fol;
             }
         }
@@ -88,7 +88,7 @@ public class UserDTO {
     }
 
     // adding
-    public void addFollower(FollowerRef follower){
+    public void addFollower(FollowerRefDTO follower){
         this.follower.add(follower);
     }
 
@@ -96,7 +96,7 @@ public class UserDTO {
     public void removeFollowerById(Long toRemove){
         removefollower(getFollowerById(toRemove));
     }
-    private void removefollower(FollowerRef folToRemove){
+    private void removefollower(FollowerRefDTO folToRemove){
         if (folToRemove == null) { return; }
         this.follower.remove(folToRemove);
     }
@@ -155,5 +155,8 @@ public class UserDTO {
     }
     public Set<DropDTO> getDropDTOS() {
         return dropDTOS;
+    }
+    public Set<FollowerRefDTO> getFollower() {
+        return follower;
     }
 }
