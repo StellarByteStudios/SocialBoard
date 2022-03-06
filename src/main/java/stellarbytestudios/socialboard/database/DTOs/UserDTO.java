@@ -25,18 +25,21 @@ public class UserDTO {
     private String passwordhash;
     // Verknüpfung zu den Drops (ein Nutzer kann mehrere Drops verfassen)
     private Set<DropDTO> dropDTOS;
+    // Verknüpfung zu den Follower (Die Liste an Followern folgt den User)
+    private Set<FollowerRef> follower;
 
     //  * * Notwendige Methoden für die Datenbank * * //
     // Set ID brauch Spring um den Autoinkrement anzupassen
     public void setID(Long newID) { this.id = newID; }
 
     // Konstruktor um das DTO zu erstellen
-    public UserDTO(Long id, String username, int passwordsalt, String passwordhash, Set<DropDTO> dropDTOS) {
+    public UserDTO(Long id, String username, int passwordsalt, String passwordhash, Set<DropDTO> dropDTOS, Set<FollowerRef> follower) {
         this.id = id;
         this.username = username;
         this.passwordsalt = passwordsalt;
         this.passwordhash = passwordhash;
         this.dropDTOS = dropDTOS;
+        this.follower = follower;
     }
 
     // * * Zusatzmethoden * * //
@@ -71,7 +74,7 @@ public class UserDTO {
         this.dropDTOS.add(new DropDTO(newContent, toChange.getDateOfWriting()));
     }
 
-    // Factory für Erstellung ohne Drops (Alles außer der "Alles Konstruktor" verwirrt Spring Data JDBC)
+    // Factory für Erstellung ohne Drops oder Follower (Alles außer der "Alles Konstruktor" verwirrt Spring Data JDBC)
     // Factory muss immer Statisch sein
     public static UserDTO create(Long id, String username, String password) {
         // Erst das Password neu Hashen
@@ -83,7 +86,7 @@ public class UserDTO {
         String hashcode = hashPasswordWithIntsalt(password, saltAsInt);
 
         // Neuen Nutzer erzeugen
-        return new UserDTO(id, username, saltAsInt, hashcode , new HashSet<>());
+        return new UserDTO(id, username, saltAsInt, hashcode , new HashSet<>(), new HashSet<>());
     }
     // Jetzt auch noch ohne ID
     public static UserDTO create(String username, String password) {
