@@ -39,6 +39,20 @@ public class DropsHandlingRepositoryImpl implements DropsHandlingRepository {
                             drops.add(mapDropDTOtoRecord(user.getUsername(),dropDTO))));
         return drops;
     }
+    // holt alle Drops von einem Bestimmten Nutzer aus der Datenbank
+    @Override
+    public List<DropRec> getDropsOfUser(String username) {
+        // Erst Alle Drops Holen
+        List<DropRec> allDrops = getAllDrops();
+
+        // Jetzt die richtigen rausfischen
+        List<DropRec> userDrops = new ArrayList<>();
+        allDrops.stream()
+                .filter(drop -> drop.author().equals(username))     // Alle Richtigen Drops rausfiltern
+                .forEach(userDrops::add);                           // Und dann hinzfügen
+
+        return  userDrops;
+    }
 
     // Speichert einen neuen Drop in der Datenbank
     @Override

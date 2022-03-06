@@ -13,6 +13,9 @@ public interface DropsHandlingRepository {
     // holt alle Drops aus der Datenbank
     List<DropRec> getAllDrops();
 
+    // holt alle Drops von einem Bestimmten Nutzer aus der Datenbank
+    List<DropRec> getDropsOfUser(String username);
+
     // Nimmt die Daten für einen Drop an und speichert diesen in der Datenbank
     void saveNewDrop(String username, String dropcontent);
 }
