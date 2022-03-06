@@ -13,9 +13,6 @@ public class StartPageController {
 
 @GetMapping(STARTPAGE)
     public String getStartPage(Model m){
-        // Damit beim ersten besuch nicht direkt die Warnung auftritt
-        m.addAttribute("verified", true);
-
         // Regeln des Registrierungsfensters
         m.addAttribute("firstVisit", true);
         return "startpage";

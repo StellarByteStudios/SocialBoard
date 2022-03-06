@@ -1,0 +1,27 @@
+@startuml
+[web] <<..controller..>>
+[service] <<..services..>>
+[database] <<..database..>>
+[core] <<..core..>>
+
+'[databaseServiceCom] <<..database.ServiceCommunication..>>
+'[DTOs] <<..database.DTOs..>>
+'[databaseCommunication] <<..database.DBcommunication..>>
+'[security] <<..database.security..>>
+
+
+[web] --> [service]
+[database] --> [service]
+[database] --> [core]
+[service] --> [core]
+'[web] --> [core]
+
+'[web] --> [service]
+'[databaseServiceCom] --> [service]
+'[service] --> [core]
+'[databaseServiceCom] --> [core]
+'[databaseServiceCom] --> [DTOs]
+'[databaseServiceCom] --> [core]
+
+@enduml
+
