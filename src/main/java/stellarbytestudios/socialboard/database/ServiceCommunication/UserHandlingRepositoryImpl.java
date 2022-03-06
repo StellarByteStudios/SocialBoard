@@ -63,14 +63,16 @@ public class UserHandlingRepositoryImpl implements UserHandlingRepository {
     @Override
     public Set<UserRec> getFollowerByUserId(Long id) {
         // Alle User aus der Datenbank holen
-        Iterable<UserDTO> userDTOIterable = userCrudRepo.findAll();
+        Optional<UserDTO> userdto = userCrudRepo.findById(id);
+        // Gibt es den Nutzer?
+        if (userdto.isEmpty()) {
+            return null;
+        }
         // Jetzt die Follower des übergebenen Users rausfischen
         Set<UserRec> follower = new HashSet<>();
-        userDTOIterable.forEach(user ->         // Für jeden User
-                user.getFollower().             // Hol ich mir wer ihm folgt (sind noch nur die Referenzen)
-                        forEach(followerRefDTO ->  // Muss jetzt die Referenzen in User umwandeln
-                        follower.add(mapFollowerReftoUser(followerRefDTO))));
-
+        userdto.get().getFollower().            // Hol ich mir wer ihm folgt (sind noch nur die Referenzen)
+                forEach(followerRefDTO ->       // Muss jetzt die Referenzen in User umwandeln
+                follower.add(mapFollowerReftoUser(followerRefDTO)));
         return  follower;
     }
 

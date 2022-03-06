@@ -48,7 +48,7 @@ public class FollowerTests {
         // Hole alle Follower aus der Datenbank
         Set<UserRec> follower = userRepoImpl.getFollowerByUserId(toSearchId);
 
-
+        assertThat(follower).hasSize(1);
         assertThat(follower).contains(magret);
     }
 
@@ -66,5 +66,18 @@ public class FollowerTests {
         // Einfachere Methode nach den Followern zu überprüfen
         assertThat(follower).hasSize(2);
         assertThat(follower).extracting(UserRec::username).contains(nameMagret, nameMuller);
+    }
+
+    @Test
+    @DisplayName("Jemand hat gar keine Follower")
+    public void getFollower3(){
+        // Daten herholen
+        Long toSearchId = MAGRET.id();
+
+        // Hole alle Follower aus der Datenbank
+        Set<UserRec> follower = userRepoImpl.getFollowerByUserId(toSearchId);
+
+        // Ist die Liste Leer?
+        assertThat(follower).hasSize(0);
     }
 }
