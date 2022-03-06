@@ -51,4 +51,20 @@ public class FollowerTests {
 
         assertThat(follower).contains(magret);
     }
+
+    @Test
+    @DisplayName("Mehrere Follower durch die Id bekommen")
+    public void getFollower2(){
+        // Daten herholen
+        Long toSearchId = HANK.id();
+        String nameMagret = MAGRET.name();
+        String nameMuller = MULLER.name();
+
+        // Hole alle Follower aus der Datenbank
+        Set<UserRec> follower = userRepoImpl.getFollowerByUserId(toSearchId);
+
+        // Einfachere Methode nach den Followern zu überprüfen
+        assertThat(follower).hasSize(2);
+        assertThat(follower).extracting(UserRec::username).contains(nameMagret, nameMuller);
+    }
 }
