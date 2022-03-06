@@ -1,6 +1,9 @@
 package stellarbytestudios.socialboard.services;
 
 import stellarbytestudios.socialboard.core.UserRec;
+import stellarbytestudios.socialboard.database.DTOs.UserDTO;
+
+import java.util.Set;
 
 
 // Dieses Interface gibt an, was von dem Datenbankpackage verlangt wird
@@ -17,4 +20,6 @@ public interface UserHandlingRepository {
 
     // legt einen neuen Nutzer in der Datenbank an
     void createNewUser(String name, String password);
+
+    Set<UserRec> getFollowerByUserId(Long id);
 }

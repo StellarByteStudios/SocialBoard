@@ -52,7 +52,7 @@ public class DropsHandlingRepositoryImpl implements DropsHandlingRepository {
     }
 
     // Mapper der den Username und ein DropDTO annimmt und daraus ein Record macht
-    private static DropRec mapDropDTOtoRecord(String username, DropDTO dropDTO){
+    protected static DropRec mapDropDTOtoRecord(String username, DropDTO dropDTO){
         DropRec record = new DropRec(username,dropDTO.getContent(), dropDTO.getDateOfWriting());
         return record;
     }

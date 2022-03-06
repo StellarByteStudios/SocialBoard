@@ -1,7 +1,10 @@
 package stellarbytestudios.socialboard.database.ServiceCommunication;
 
 import org.springframework.stereotype.Repository;
+import stellarbytestudios.socialboard.core.DropRec;
+import stellarbytestudios.socialboard.core.UserRec;
 import stellarbytestudios.socialboard.database.DBcommunication.UserCrudRepo;
+import stellarbytestudios.socialboard.database.DTOs.FollowerRefDTO;
 import stellarbytestudios.socialboard.database.DTOs.UserDTO;
 import stellarbytestudios.socialboard.services.UserHandlingRepository;
 
@@ -54,5 +57,35 @@ public class UserHandlingRepositoryImpl implements UserHandlingRepository {
         UserDTO newUser = UserDTO.create(name, password);
         // Abspeichern des neuen Nutzers in der Datenbank
         userCrudRepo.save(newUser);
+    }
+
+    // Hole alle Follower eines Nutzers aus der Datenbank
+    @Override
+    public Set<UserRec> getFollowerByUserId(Long id) {
+        // Alle User aus der Datenbank holen
+        Iterable<UserDTO> userDTOIterable = userCrudRepo.findAll();
+        // Jetzt die Follower des übergebenen Users rausfischen
+        Set<UserRec> follower = new HashSet<>();
+        userDTOIterable.forEach(user ->         // Für jeden User
+                user.getFollower().             // Hol ich mir wer ihm folgt (sind noch nur die Referenzen)
+                        forEach(followerRefDTO ->  // Muss jetzt die Referenzen in User umwandeln
+                        follower.add(mapFollowerReftoUser(followerRefDTO))));
+
+        return  follower;
+    }
+
+    // Mappt eine FollowerReferenz (also die Id) eines Followers auf desses Daten
+    private UserRec mapFollowerReftoUser(FollowerRefDTO followerRefDTO) {
+        Optional<UserDTO> databaseDataOpt = userCrudRepo.findById(followerRefDTO.getFollowerID());
+        if (databaseDataOpt.isEmpty()) {
+            return null;
+        }
+
+        String username = databaseDataOpt.get().getUsername();
+        List<DropRec> drops = new ArrayList<>();
+        databaseDataOpt.get().getDropDTOS().forEach(drop -> drops.add(DropsHandlingRepositoryImpl.mapDropDTOtoRecord(databaseDataOpt.get().getUsername(), drop)));
+        // Greifen erstmal nicht auf die Follower zu, denn dann kämen wir zu den Followern der Follower usw...
+        Set<UserRec> followerSet = new HashSet<>();
+        return new UserRec(username, drops, followerSet);
     }
 }
