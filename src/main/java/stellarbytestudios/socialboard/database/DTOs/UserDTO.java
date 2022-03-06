@@ -3,7 +3,6 @@ package stellarbytestudios.socialboard.database.DTOs;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
-import stellarbytestudios.socialboard.core.UserRec;
 
 import java.util.HashSet;
 import java.util.Set;

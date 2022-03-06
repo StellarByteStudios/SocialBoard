@@ -5,8 +5,7 @@ import stellarbytestudios.socialboard.database.DBcommunication.UserCrudRepo;
 import stellarbytestudios.socialboard.database.DTOs.UserDTO;
 import stellarbytestudios.socialboard.services.UserHandlingRepository;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 // Diese Klasse Implementiert das Repository aus dem Service Package
